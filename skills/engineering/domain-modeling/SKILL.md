@@ -72,3 +72,9 @@ Only offer to create an ADR when all three are true:
 3. **The result of a real trade-off** — there were genuine alternatives and you picked one for specific reasons
 
 If any of the three is missing, skip the ADR. Use the format in [ADR-FORMAT.md](./ADR-FORMAT.md).
+
+When writing the ADR document:
+- Assess whether any part of the feature is considered difficult (such that a small AI agent/subagent might struggle or fail to implement it without concrete direction), or if a specific class, data structure, or design was proposed during the session.
+- If so, include relevant code snippets (e.g. interfaces, data structures, key classes, or algorithmic skeletons) inside the ADR to guide future implementation.
+- Include explicit file paths or references to relevant files/projects in the active workspace so that implementing subagents can use them to improve their coding accuracy.
+- For simple tasks/designs, keep the ADR to the minimal format as it currently is.
