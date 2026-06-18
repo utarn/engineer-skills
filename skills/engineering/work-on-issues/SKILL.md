@@ -25,7 +25,7 @@ Terminologies:
    - Verify open (Skip if closed).
    - Detect PRD/Epic by label `PRD` or title prefix `PRD:`. Skip implementation, add to `$PRD_TRACKER` for auto-close check.
 5. **Read Details**: Fetch full issue view and comments (`gh issue view --comments` / `glab issue view --comments`).
-6. **Assign & Label**: Mark in-progress, remove needs-triage.
+6. **Assign & Label**: Mark `in-progress` (by applying `in-progress` label and removing `ready-for-agent` and `needs-triage`).
 
 ---
 
@@ -63,7 +63,7 @@ If possible, create native tracker links (e.g., GitLab API `/links` with `is_blo
 1. **Create PR/MR**: Link to issue using "Closes #<number>".
 2. **Auto-Merge**: Merge immediately (squash & delete branch).
 3. **Comment**: Post summary of implementation.
-4. **Close**: Remove triage/progress labels, add `ai-agent-closed`, and close issue.
+4. **Close**: Remove triage/progress labels (like `in-progress`), add `closed`, and close issue.
 5. **Propagate `.env` files**: Copy modified env files back to main working directory before worktree removal:
    ```bash
    WT=.claude/worktrees/issue-<number>
@@ -132,7 +132,7 @@ Execute the selected issue solo. Skip dependency graph processing.
 | `PRD` | Parent tracking issue | `#0075CA` |
 | `in-progress` | Active | `#E4E669` |
 | `ready-for-agent` | Ready for agent | `#0E8A16` |
-| `ai-agent-closed` | Closed by AI | `#5319E7` |
+| `closed` | Closed by AI / Finished | `#5319E7` |
 
 To apply labels, try updating directly. If not found, create label first (e.g. color `#E4E669` for `in-progress`) and retry.
 
