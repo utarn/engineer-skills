@@ -7,7 +7,7 @@ description: >
 
 # Work on Issues
 
-Fetches GitHub/GitLab issues, triages, implements sequentially (one main issue at a time), runs `find-mismatch` reviews, and closes.
+Fetches GitHub/GitLab issues, triages, implements sequentially (one main issue at a time) using git worktree and subagent, runs `find-mismatch` reviews, and closes.
 
 ## 1. Tracker Setup
 Detect host via `git remote -v`. Set `$TRACKER` to `gh` or `glab`.
