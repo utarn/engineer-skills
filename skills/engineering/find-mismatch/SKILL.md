@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 # Find Mismatch
 
-Walk through every file. Focus only on runtime failures/bugs. Do NOT report style, formatting, performance suggestions, docs/tests, or "consider using X".
+Run static analysis using fallow and fix issues that it suggests. Walk through every file. Focus only on runtime failures/bugs and fix them. Do NOT report style, formatting, performance suggestions, docs/tests, or "consider using X".
 
 ## 1. Process
 1. **JS/TS (Pre-check)**: Run static analysis.
