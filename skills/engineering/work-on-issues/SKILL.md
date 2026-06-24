@@ -1,7 +1,7 @@
 ---
 name: work-on-issues
 effort: max
-model: haiku
+model: sonnet
 description: >
   Fetch, implement, and close GitHub/GitLab issues sequentially (one main issue starting with PRD:/feat: at a time). Handles parallel subtasks, dependency parsing, worktrees, and env propagation.
 ---
@@ -42,7 +42,7 @@ If possible, create native tracker links (e.g., GitLab API `/links` with `is_blo
    git worktree add .claude/worktrees/issue-<number> -b work-on-issue-<number>
    ```
 2. **Copy `.env` files**: Copy `.env` and `.env.*` files into worktree directory.
-3. **Dispatch Sub-Agent** (`subagent_type: "full-stack-engineer"` inside `.claude/worktrees/issue-<number>`):
+3. **Dispatch Sub-Agent using haiku model** (`subagent_type: "full-stack-engineer"` inside `.claude/worktrees/issue-<number>`): 
    Prompt spec:
    ```markdown
    Implement issue #<number>: <title>.
@@ -55,7 +55,7 @@ If possible, create native tracker links (e.g., GitLab API `/links` with `is_blo
    Output: Summary, find-mismatch fixes, tests run, and commit hash.
    Commit format: `fix: resolve #<number> — <short description>`
    ```
-4. **Verify**: Check output, diff, and run tests.
+4. **Verify**: Check output, diff, and run tests and run `/find-mismatch`. If the programming language is typescript or javascript, run `npx fallow audit` (Make sure to install `fallow` if not present). If errors, fix and re-run tests.
 5. **Commit**: Ensure changes are committed in worktree (`fix: resolve #<number> — <desc>`).
 
 ---
