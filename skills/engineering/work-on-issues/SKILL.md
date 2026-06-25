@@ -51,12 +51,11 @@ If possible, create native tracker links (e.g., GitLab API `/links` with `is_blo
    API/best-practices: Search via `context7` or web.
    Compile/Lint errors: If 3+ consecutive failures, check Reference Directories (<RefDirs>) to align configurations.
    Parallel subtasks: Decompose & dispatch sub-agents if tasks are independent (no shared files/dirs).
-   Post-implementation: Run `find-mismatch` skill on modified files only. Auto-apply confirmed fixes without prompting. Re-run tests.
+   Post-implementation: Check output, diff, and run tests and run `find-mismatch` skill on modified files only. If the programming language is typescript or javascript, run `npx fallow audit` (Make sure to install `fallow` if not present). If errors, fix and re-run tests.
    Output: Summary, find-mismatch fixes, tests run, and commit hash.
    Commit format: `fix: resolve #<number> — <short description>`
    ```
-4. **Verify**: Check output, diff, and run tests and run `/find-mismatch`. If the programming language is typescript or javascript, run `npx fallow audit` (Make sure to install `fallow` if not present). If errors, fix and re-run tests.
-5. **Commit**: Ensure changes are committed in worktree (`fix: resolve #<number> — <desc>`).
+4. **Commit**: Ensure changes are committed in worktree (`fix: resolve #<number> — <desc>`).
 
 ---
 
