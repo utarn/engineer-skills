@@ -8,7 +8,7 @@ description: >
 
 # Work on Issues
 
-Fetches GitHub/GitLab issues, triages, implements sequentially (one main issue at a time) using git worktree and subagent, runs `find-mismatch` reviews, and closes.
+There are three phases to work on issues:
 
 ## 1. Tracker Setup
 Detect host via `git remote -v`. Set `$TRACKER` to `gh` or `glab`.
@@ -140,6 +140,7 @@ To apply labels, try updating directly. If not found, create label first (e.g. c
 
 ## 10. Edge Cases
 - **No CLI**: Use APIs directly or ask user to install `gh`/`glab`.
+- **No Fallow**: Ask user to install `fallow` for JS/TS security audit.
 - **Conflict/Cycle**: Report circular dependencies, skip affected issues.
 - **External Blockers**: Treat open external issues as unresolved blockers.
 - **API Link Failure**: Fall back to text references.
