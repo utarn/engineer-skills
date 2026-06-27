@@ -41,6 +41,24 @@ npx skills@latest add utarn/engineer-skills
 
 4. Bam - you're ready to go.
 
+## วิธีติดตั้ง (ภาษาไทย)
+
+ติดตั้งสกิลทั้งหมดแบบ global:
+
+```bash
+npx skills@latest add utarn/engineer-skills -g
+```
+
+จากนั้นรันอัปเดต:
+
+```bash
+npx skills update -g -y
+```
+
+คำอธิบายคำสั่ง:
+- **`npx skills add utarn/engineer-skills -g`** — ดาวน์โหลดสกิลทั้งหมดจาก repo นี้ไปไว้ในเครื่องแบบ global (`-g` = global) คำสั่งนี้ต้องใช้ครั้งเดียว
+- **`npx skills update -g -y`** — อัปเดตสกิลทั้งหมดในเครื่องให้เป็นเวอร์ชันล่าสุด (`-y` = ยืนยันอัตโนมัติโดยไม่ต้องถาม) ใช้คำสั่งนี้เมื่อต้องการซิงค์สกิลเวอร์ชันใหม่
+
 ## Why These Skills Exist
 
 I built these skills as a way to fix common failure modes I see with Claude Code, Codex, and other coding agents.
