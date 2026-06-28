@@ -51,7 +51,7 @@ If possible, create native tracker links (e.g., GitLab API `/links` with `is_blo
    API/best-practices: Search via `context7`, `/brightdata-plugin:search`, `/search`, or WebSearch before writing code if unsure.
    Stuck on errors: If 2+ consecutive failures, you MUST research via `context7`, `/brightdata-plugin:search`, `/search`, or WebSearch first (they are available) to find the correct API/approach, then retry. Only escalate after researching.
    Parallel subtasks: Decompose & dispatch sub-agents if tasks are independent (no shared files/dirs).
-   Post-implementation: Check output, diff, and run tests and run `find-mismatch` skill on modified files only. If the programming language is typescript or javascript, run `npx fallow audit` (Make sure to install `fallow` if not present). If errors, fix and re-run tests.
+   Post-implementation: Check output, diff, and run tests and run `/find-mismatch` skill on modified files only. If the programming language is typescript or javascript, run `npx fallow audit` (Make sure to install `fallow` if not present). If errors, fix and re-run tests.
    Output: Summary, find-mismatch fixes, tests run, and commit hash.
    Commit format: `fix: resolve #<number> — <short description>`
    ```
@@ -101,7 +101,7 @@ Subtask: <details>
 Working Directory: .claude/worktrees/issue-<number>
 Scope: Modify <MAY_MODIFY>, DO NOT modify <MUST_NOT_MODIFY>.
 Compile/Lint errors: If 2+ consecutive failures, you MUST research via `context7`, `/brightdata-plugin:search`, `/search`, or WebSearch first (they are available). Check Reference Directories (<RefDirs>) to align configurations.
-Post-implementation: Run `find-mismatch` on modified files, auto-fix.
+Post-implementation: Run `/find-mismatch` skill on modified files, auto-fix.
 Verification: Run relevant tests. Return summary, modified files, test results.
 ```
 
