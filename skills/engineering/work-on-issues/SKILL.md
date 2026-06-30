@@ -42,7 +42,7 @@ If possible, create native tracker links (e.g., GitLab API `/links` with `is_blo
    git worktree add .claude/worktrees/issue-<number> -b work-on-issue-<number>
    ```
 2. **Copy `.env` files**: Copy `.env` and `.env.*` files into worktree directory.
-3. **Dispatch Sub-Agent using haiku model** (`subagent_type: "full-stack-engineer"` inside `.claude/worktrees/issue-<number>`): 
+3. **Dispatch Sub-Agent using haiku model** (inside `.claude/worktrees/issue-<number>`): 
    Prompt spec:
    ```markdown
    Implement issue #<number>: <title>.
