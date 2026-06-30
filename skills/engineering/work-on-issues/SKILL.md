@@ -100,7 +100,7 @@ Implement subtask for issue #<number>: <title>.
 Subtask: <details>
 Working Directory: .claude/worktrees/issue-<number>
 Scope: Modify <MAY_MODIFY>, DO NOT modify <MUST_NOT_MODIFY>.
-Compile/Lint errors: If 2+ consecutive failures, you MUST research via `context7`, `/brightdata-plugin:search`, `/search`, or WebSearch first (they are available). Check Reference Directories (<RefDirs>) to align configurations.
+Compile/Lint errors: If 2+ consecutive failures or any 3rd party dependency issues, always use the `/find-docs` skill to find documentation using context7 or `/search`, or WebSearch first (they are available). Check Reference Directories (<RefDirs>) to align configurations.
 Post-implementation: Run `/find-mismatch` skill on modified files, auto-fix.
 Verification: Run relevant tests. Return summary, modified files, test results.
 ```
