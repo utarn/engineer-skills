@@ -13,7 +13,8 @@ mkdir -p ~/.claude && cat > ~/.claude/settings.json << 'EOF'
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "glm-max-claudecode",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "glm-max-claudecode",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek-v4-flash"
+    "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek-v4-flash",
+    "BRIGHT_DATA_API_TOKEN": ""
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "xhigh",
@@ -37,7 +38,8 @@ if (-not (Test-Path $dir)) { New-Item -ItemType Directory -Force -Path $dir | Ou
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "glm-max-claudecode",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "glm-max-claudecode",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek-v4-flash"
+    "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek-v4-flash",
+    "BRIGHT_DATA_API_TOKEN": ""
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "xhigh",
@@ -91,16 +93,16 @@ claude plugin marketplace add utarn/engineer-skills
 claude plugin install utarn-skills@utarn
 ```
 
-## macOS / Linux — Install utarn skills
+## Bright Data API key (free tier)
 
+The Bright Data MCP server needs an API token. Sign up on the Bright Data website (free tier available), create a zone, and copy its API token into `BRIGHT_DATA_API_TOKEN` in your `settings.json` `env` block — or export it in your shell.
+
+**Bash** — add to `~/.bashrc` / `~/.zshrc`:
 ```bash
-claude plugin marketplace add utarn/engineer-skills
-claude plugin install utarn-skills@utarn
+export BRIGHT_DATA_API_TOKEN="paste-your-token-here"
 ```
 
-## Windows (PowerShell) — Install utarn skills
-
+**PowerShell** — add to your profile:
 ```powershell
-claude plugin marketplace add utarn/engineer-skills
-claude plugin install utarn-skills@utarn
+$env:BRIGHT_DATA_API_TOKEN = "paste-your-token-here"
 ```
