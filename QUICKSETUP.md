@@ -1,38 +1,38 @@
-# Quick Setup
+# การตั้งค่าด่วน (Quick Setup)
 
-Get Claude Code working with all the tools you need in one shot: the engineer-skills plugin, Context7 for live docs, and Bright Data for web scraping (CLI + skill).
+เริ่มใช้งาน Claude Code พร้อมเครื่องมือทั้งหมดที่คุณต้องการในขั้นตอนเดียว: ปลั๊กอิน engineer-skills, Context7 สำหรับดึงเอกสารสด, และ Bright Data สำหรับ scraping เว็บ (CLI + skill)
 
-Pick your shell and run the **install** block once. That gives you a `ccc` / `cccc` pair to launch Claude Code, plus a `quicksetup` function that wires up the skills. Then just type `quicksetup` to run it.
+เลือก shell ของคุณแล้วรันบล็อก **install** ครั้งเดียว สิ่งนี้จะให้คู่คำสั่ง `ccc` / `cccc` สำหรับเปิด Claude Code พร้อมฟังก์ชัน `quicksetup` ที่เชื่อมต่อ skills ให้ จากนั้นเพียงพิมพ์ `quicksetup` เพื่อรันได้เลย
 
-> `ccc` and `cccc` are convenience wrappers around `claude` — they skip the per-command permission prompt and continue the last session, matching the `--dangerously-skip-permissions` flow the rest of this repo assumes. They call `claude` directly, so they work for anyone, not just the author's private aliases.
+> `ccc` และ `cccc` คือ wrapper สะดวกสำหรับ `claude` — ข้ามการขออนุญาตต่อคำสั่งและต่อเซสชันล่าสุด สอดคล้องกับ flow `--dangerously-skip-permissions` ที่เหลือของ repo นี้สันนิษฐานไว้ พวกมันเรียก `claude` โดยตรง จึงทำงานได้กับทุกคน ไม่ใช่แค่ alias ส่วนตัวของผู้เขียน
 
 ## Bash (Linux / macOS)
 
-Add this to `~/.bashrc` (or `~/.zshrc` on macOS), then start a new shell:
+เพิ่มโค้ดนี้ลงใน `~/.bashrc` (หรือ `~/.zshrc` บน macOS) แล้วเริ่ม shell ใหม่:
 
 ```bash
-# Convenience launchers for Claude Code
+# ตัวเปิด Claude Code แบบสะดวก
 ccc()  { claude --dangerously-skip-permissions "$@"; }
 cccc() { claude --dangerously-skip-permissions --continue "$@"; }
 
-# One-shot setup: engineer-skills plugin + Context7 + Bright Data (CLI + skill)
+# ตั้งค่าแบบรอบเดียว: ปลั๊กอิน engineer-skills + Context7 + Bright Data (CLI + skill)
 quicksetup() {
-  # 1. engineer-skills plugin
+  # 1. ปลั๊กอิน engineer-skills
   claude plugin marketplace add utarn/engineer-skills
   claude plugin install utarn-skills@utarn
 
-  # 2. Context7 — live library docs
+  # 2. Context7 — เอกสาร library แบบสด
   npx ctx7@latest setup
 
-  # 3. Bright Data — CLI / MCP server (needs an API token, see below)
+  # 3. Bright Data — CLI / MCP server (ต้องใช้ API token ดูด้านล่าง)
   claude mcp add brightdata -- npx -y @brightdata/mcp
 
-  # 4. Bright Data — skill surface inside Claude Code
+  # 4. Bright Data — skill surface ภายใน Claude Code
   claude plugin install brightdata-plugin@claude-plugins-official --scope local
 }
 ```
 
-Run it:
+รันคำสั่ง:
 
 ```bash
 quicksetup
@@ -40,31 +40,31 @@ quicksetup
 
 ## PowerShell (Windows)
 
-Add this to your PowerShell profile (`notepad $PROFILE`), then open a new terminal:
+เพิ่มโค้ดนี้ลงในโปรไฟล์ PowerShell ของคุณ (`notepad $PROFILE`) แล้วเปิดเทอร์มินัลใหม่:
 
 ```powershell
-# Convenience launchers for Claude Code
+# ตัวเปิด Claude Code แบบสะดวก
 function ccc  { claude --dangerously-skip-permissions @args }
 function cccc { claude --dangerously-skip-permissions --continue @args }
 
-# One-shot setup: engineer-skills plugin + Context7 + Bright Data (CLI + skill)
+# ตั้งค่าแบบรอบเดียว: ปลั๊กอิน engineer-skills + Context7 + Bright Data (CLI + skill)
 function quicksetup {
-  # 1. engineer-skills plugin
+  # 1. ปลั๊กอิน engineer-skills
   claude plugin marketplace add utarn/engineer-skills
   claude plugin install utarn-skills@utarn
 
-  # 2. Context7 — live library docs
+  # 2. Context7 — เอกสาร library แบบสด
   npx ctx7@latest setup
 
-  # 3. Bright Data — CLI / MCP server (needs an API token, see below)
+  # 3. Bright Data — CLI / MCP server (ต้องใช้ API token ดูด้านล่าง)
   claude mcp add brightdata -- npx -y @brightdata/mcp
 
-  # 4. Bright Data — skill surface inside Claude Code
+  # 4. Bright Data — skill surface ภายใน Claude Code
   claude plugin install brightdata-plugin@claude-plugins-official --scope local
 }
 ```
 
-Run it:
+รันคำสั่ง:
 
 ```powershell
 quicksetup
