@@ -79,6 +79,7 @@ This fork keeps a few skills that the upstream router above doesn't route to. Th
 
 - **`/to-prd`** — like `/to-spec`, but writes a PRD-shaped document. Kept for repos that already use the PRD vocabulary.
 - **`/to-issues`** and **`/to-issues-yes`** — like `/to-tickets`, but split a plan/spec/PRD into independently-grabbable issues using vertical slices (and `/to-issues-yes` publishes them straight to the project issue tracker as tracer-bullet issues). Predecessors of `/to-tickets`; reach for them when you want the older issue-splitting behaviour.
+- **`/to-tickets-yes`** — the assume-yes variant of `/to-tickets`: same tracer-bullet tickets with blocking edges, but it skips the approval round and publishes straight to the configured tracker. Reach for it when the breakdown is routine enough to trust without a back-and-forth.
 - **`/find-mismatch`** — a focused code review that hunts for bugs that break at runtime, plus JS/TS static analysis via `fallow`. A narrower alternative to `/code-review` when you specifically want mismatch-detection and static checks, not the two-axis Standards/Spec review.
 - **`/work-on-issues`** — fetch, implement, and close GitHub/GitLab issues sequentially (one main issue starting with `PRD:`/`feat:` at a time). An end-to-end issue driver that wraps the implement → review → close loop for tracked issues.
 

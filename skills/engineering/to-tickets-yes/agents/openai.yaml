@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Tickets Yes"
+  short_description: "Publish vertical-slice tickets without an approval round"
+policy:
+  allow_implicit_invocation: false
