@@ -41,6 +41,31 @@ npx skills@latest add utarn/engineer-skills
 
 4. Bam - you're ready to go.
 
+## Manual install (git clone + copy)
+
+For situations where you don't want to use `npx`, run `install-skills.sh` or `install-skills.ps1` to clone the repo and copy all skills to `~/.agents/skills/` and `~/.claude/skills/` (or `%USERPROFILE%\.agents\skills\` and `%USERPROFILE%\.claude\skills\` on Windows).
+
+One-liner (Unix):
+
+```bash
+mkdir -p $HOME/.agents/skills $HOME/.claude/skills && \
+curl -sL https://github.com/utarn/engineer-skills/archive/refs/heads/main.zip -o /tmp/skills.zip && \
+unzip -qo /tmp/skills.zip -d /tmp/skills && \
+cp -R /tmp/skills/engineer-skills-main/skills/*/ $HOME/.agents/skills/ && \
+cp -R /tmp/skills/engineer-skills-main/skills/*/ $HOME/.claude/skills/ && \
+rm -rf /tmp/skills /tmp/skills.zip
+```
+
+One-liner (Windows PowerShell):
+
+```powershell
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills", "$env:USERPROFILE\.claude\skills"; \
+Invoke-WebRequest 'https://github.com/utarn/engineer-skills/archive/refs/heads/main.zip' -OutFile $env:TEMP\skills.zip; \
+Expand-Archive -Path $env:TEMP\skills.zip -DestinationPath $env:TEMP\skills -Force; \
+Copy-Item -Recurse -Force $env:TEMP\skills\engineer-skills-main\skills\* $env:USERPROFILE\.agents\skills\; \
+Copy-Item -Recurse -Force $env:TEMP\skills\engineer-skills-main\skills\* $env:USERPROFILE\.claude\skills\
+```
+
 ## วิธีติดตั้ง (ภาษาไทย)
 
 ติดตั้งสกิลทั้งหมดแบบ global:
@@ -158,6 +183,88 @@ And crucially, [`/improve-codebase-architecture`](./skills/engineering/improve-c
 ### Summary
 
 Software engineering fundamentals matter more than ever. These skills are my best effort at condensing these fundamentals into repeatable practices, to help you ship the best apps of your career. Enjoy.
+
+## Install Claude Code Plugins
+
+To install the bundled Claude Code plugins, run the corresponding command for your platform.
+
+**Unix / macOS:**
+
+```bash
+mkdir -p ~/.claude && cp -R /tmp/skills/engineer-skills-main/skills/* ~/.claude/plugins/ && \
+echo "Plugins installed"
+```
+
+**Windows PowerShell:**
+
+```powershell
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\plugins"
+Copy-Item -Recurse -Force $env:TEMP\engineer-skills-main\skills\* "$env:USERPROFILE\.claude\plugins\"
+```
+
+### Plugin list
+
+The following plugins are included (all marked `true` for `claude-plugins-official`):
+
+| Plugin ID |
+|---|
+| `pyright-lsp@claude-plugins-official` |
+| `clangd-lsp@claude-plugins-official` |
+| `rust-analyzer-lsp@claude-plugins-official` |
+| `gopls-lsp@claude-plugins-official` |
+| `context7@claude-plugins-official` |
+| `frontend-design@claude-plugins-official` |
+| `superpowers@claude-plugins-official` |
+| `playwright@claude-plugins-official` |
+| `brightdata-plugin@claude-plugins-official` |
+| `typescript-lsp@claude-plugins-official` |
+| `jdtls-lsp@claude-plugins-official` |
+| `php-lsp@claude-plugins-official` |
+| `kotlin-lsp@claude-plugins-official` |
+| `swift-lsp@claude-plugins-official` |
+| `lua-lsp@claude-plugins-official` |
+| `ruby-lsp@claude-plugins-official` |
+| `liquid-lsp@claude-plugins-official` |
+| `code-review@claude-plugins-official` |
+| `skill-creator@claude-plugins-official` |
+| `github@claude-plugins-official` |
+| `claude-md-management@claude-plugins-official` |
+| `csharp-lsp@claude-plugins-official` |
+| `code-simplifier@claude-plugins-official` |
+| `feature-dev@claude-plugins-official` |
+| `security-guidance@claude-plugins-official` |
+
+The following plugins are included:
+
+| Plugin | Purpose |
+|---|---|
+| `pyright-lsp` | Python language server |
+| `clangd-lsp` | C/C++ language server |
+| `rust-analyzer-lsp` | Rust language server |
+| `gopls-lsp` | Go language server |
+| `context7` | Documentation lookup |
+| `frontend-design` | Frontend UI design |
+| `superpowers` | Superpowers AI assistant |
+| `playwright` | Browser automation |
+| `brightdata-plugin` | Web scraping |
+| `typescript-lsp` | TypeScript language server |
+| `jdtls-lsp` | Java language server |
+| `php-lsp` | PHP language server |
+| `kotlin-lsp` | Kotlin language server |
+| `swift-lsp` | Swift language server |
+| `lua-lsp` | Lua language server |
+| `ruby-lsp` | Ruby language server |
+| `liquid-lsp` | Liquid language server |
+| `code-review` | Code review assistance |
+| `skill-creator` | Create new skills |
+| `github` | GitHub integration |
+| `claude-md-management` | Markdown management |
+| `csharp-lsp` | C# language server |
+| `code-simplifier` | Code simplification |
+| `feature-dev` | Feature development |
+| `security-guidance` | Security guidance |
+
+## Reference
 
 ## Reference
 
