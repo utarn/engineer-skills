@@ -1,0 +1,3 @@
+interface:
+  display_name: "Work On Issues"
+  short_description: "Fetch, implement, close tracked issues"

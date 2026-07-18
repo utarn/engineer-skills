@@ -1,5 +1,22 @@
 {
   "name": "utarn-skills",
+  "version": "1.2.0",
+  "description": "Utharn Buranasaksee's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more. Plug-and-play, not vibe coding.",
+  "author": {
+    "name": "Utharn Buranasaksee",
+    "url": "https://github.com/utarn"
+  },
+  "repository": "https://github.com/utarn/engineer-skills",
+  "license": "MIT",
+  "keywords": [
+    "engineering",
+    "skills",
+    "tdd",
+    "code-review",
+    "grilling",
+    "domain-modeling",
+    "productivity"
+  ],
   "skills": [
     "./skills/engineering/ask-utarn",
     "./skills/engineering/diagnosing-bugs",
@@ -11,11 +28,16 @@
     "./skills/engineering/to-issues",
     "./skills/engineering/to-issues-yes",
     "./skills/engineering/to-prd",
+    "./skills/engineering/to-spec",
+    "./skills/engineering/to-tickets",
+    "./skills/engineering/wayfinder",
+    "./skills/engineering/implement",
     "./skills/engineering/prototype",
+    "./skills/engineering/research",
     "./skills/engineering/domain-modeling",
     "./skills/engineering/codebase-design",
     "./skills/engineering/find-mismatch",
-    "./skills/engineering/implement",
+    "./skills/engineering/code-review",
     "./skills/engineering/resolving-merge-conflicts",
     "./skills/engineering/work-on-issues",
     "./skills/productivity/grill-me",

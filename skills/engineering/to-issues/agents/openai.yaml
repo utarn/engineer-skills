@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Issues"
+  short_description: "Split a plan into vertical-slice issues"
+policy:
+  allow_implicit_invocation: false

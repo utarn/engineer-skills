@@ -1,0 +1,5 @@
+interface:
+  display_name: "To PRD"
+  short_description: "Synthesize the conversation into a PRD"
+policy:
+  allow_implicit_invocation: false

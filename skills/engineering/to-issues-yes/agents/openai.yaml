@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Issues Yes"
+  short_description: "Publish vertical-slice issues to the tracker"
+policy:
+  allow_implicit_invocation: false
