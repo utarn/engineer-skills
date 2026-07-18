@@ -41,31 +41,6 @@ npx skills@latest add utarn/engineer-skills
 
 4. Bam - you're ready to go.
 
-## Manual install (git clone + copy)
-
-For situations where you don't want to use `npx`, run `install-skills.sh` or `install-skills.ps1` to clone the repo and copy all skills to `~/.agents/skills/` and `~/.claude/skills/` (or `%USERPROFILE%\.agents\skills\` and `%USERPROFILE%\.claude\skills\` on Windows).
-
-One-liner (Unix):
-
-```bash
-mkdir -p $HOME/.agents/skills $HOME/.claude/skills && \
-curl -sL https://github.com/utarn/engineer-skills/archive/refs/heads/main.zip -o /tmp/skills.zip && \
-unzip -qo /tmp/skills.zip -d /tmp/skills && \
-cp -R /tmp/skills/engineer-skills-main/skills/*/ $HOME/.agents/skills/ && \
-cp -R /tmp/skills/engineer-skills-main/skills/*/ $HOME/.claude/skills/ && \
-rm -rf /tmp/skills /tmp/skills.zip
-```
-
-One-liner (Windows PowerShell):
-
-```powershell
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills", "$env:USERPROFILE\.claude\skills"; \
-Invoke-WebRequest 'https://github.com/utarn/engineer-skills/archive/refs/heads/main.zip' -OutFile $env:TEMP\skills.zip; \
-Expand-Archive -Path $env:TEMP\skills.zip -DestinationPath $env:TEMP\skills -Force; \
-Copy-Item -Recurse -Force $env:TEMP\skills\engineer-skills-main\skills\* $env:USERPROFILE\.agents\skills\; \
-Copy-Item -Recurse -Force $env:TEMP\skills\engineer-skills-main\skills\* $env:USERPROFILE\.claude\skills\
-```
-
 ## วิธีติดตั้ง (ภาษาไทย)
 
 ติดตั้งสกิลทั้งหมดแบบ global:

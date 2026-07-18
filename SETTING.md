@@ -76,3 +76,31 @@ foreach ($plugin in $plugins) {
     claude plugin install "${plugin}@claude-plugins-official" --scope local
 }
 ```
+
+## macOS / Linux — Install utarn skills
+
+```bash
+claude plugin marketplace add utarn/engineer-skills
+claude plugin install utarn-skills@utarn
+```
+
+## Windows (PowerShell) — Install utarn skills
+
+```powershell
+claude plugin marketplace add utarn/engineer-skills
+claude plugin install utarn-skills@utarn
+```
+
+## macOS / Linux — Install utarn skills
+
+```bash
+claude plugin marketplace add utarn/engineer-skills
+claude plugin install utarn-skills@utarn
+```
+
+## Windows (PowerShell) — Install utarn skills
+
+```powershell
+claude plugin marketplace add utarn/engineer-skills
+claude plugin install utarn-skills@utarn
+```
