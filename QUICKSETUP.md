@@ -70,34 +70,34 @@ function quicksetup {
 quicksetup
 ```
 
-## Bright Data API key (free tier)
+## Bright Data API key (แผนฟรี / free tier)
 
-The Bright Data MCP server needs an API token to talk to Bright Data's scraping network.
+เซิร์ฟเวอร์ Bright Data MCP ต้องการ API token เพื่อเชื่อมต่อกับเครือข่าย scraping ของ Bright Data
 
-1. Go to the Bright Data website and sign up — there's a **free tier** you can use without a paid plan.
-2. Create a zone (Web Unlocker is the general-purpose one) and copy its API token.
-3. Export it before you launch Claude so the MCP server can read it:
+1. ไปที่เว็บไซต์ Bright Data แล้วสมัครสมาชิก — มี **free tier** ที่ใช้งานได้โดยไม่ต้องมีแผนแบบชำระเงิน
+2. สร้างโซน (Web Unlocker คือตัวทั่วไป) แล้วคัดลอก API token ของมัน
+3. Export token ก่อนเปิด Claude เพื่อให้ MCP server อ่านได้:
 
-   **Bash** — add to `~/.bashrc` / `~/.zshrc`:
+   **Bash** — เพิ่มลงใน `~/.bashrc` / `~/.zshrc`:
    ```bash
-   export BRIGHT_DATA_API_TOKEN="paste-your-token-here"
+   export BRIGHT_DATA_API_TOKEN="วาง-token-ของคุณ-ที่นี่"
    ```
 
-   **PowerShell** — add to your profile:
+   **PowerShell** — เพิ่มลงในโปรไฟล์ของคุณ:
    ```powershell
-   $env:BRIGHT_DATA_API_TOKEN = "paste-your-token-here"
+   $env:BRIGHT_DATA_API_TOKEN = "วาง-token-ของคุณ-ที่นี่"
    ```
 
-Start a new shell (or reload your profile) after exporting the token, then run `ccc` / `cccc`.
+เริ่ม shell ใหม่ (หรือโหลดโปรไฟล์ใหม่) หลังจาก export token แล้วรัน `ccc` / `cccc`
 
-## What each step does
+## แต่ละขั้นตอนทำอะไร
 
-| Step | Command | Effect |
+| ขั้นตอน | คำสั่ง | ผลลัพธ์ |
 |---|---|---|
-| 1 | `claude plugin marketplace add utarn/engineer-skills` | Register this repo as a Claude Code plugin marketplace. |
-| 2 | `claude plugin install utarn-skills@utarn` | Install the whole engineer-skills bundle as a managed, auto-updating plugin. |
-| 3 | `npx ctx7@latest setup` | Install Context7 into your coding agent so it can fetch live library docs. |
-| 4 | `claude mcp add brightdata -- npx -y @brightdata/mcp` | Register the Bright Data MCP server (CLI) so Claude can call its scraping tools. Needs the API token above. |
-| 5 | `claude plugin install brightdata-plugin@claude-plugins-official --scope local` | Add the Bright Data skill surface to this project. |
+| 1 | `claude plugin marketplace add utarn/engineer-skills` | ลงทะเบียน repo นี้เป็น Claude Code plugin marketplace |
+| 2 | `claude plugin install utarn-skills@utarn` | ติดตั้งแพ็กเกจ engineer-skills ทั้งหมดเป็นปลั๊กอินที่จัดการและอัปเดตอัตโนมัติ |
+| 3 | `npx ctx7@latest setup` | ติดตั้ง Context7 ลงใน coding agent ของคุณเพื่อให้ดึงเอกสาร library แบบสดได้ |
+| 4 | `claude mcp add brightdata -- npx -y @brightdata/mcp` | ลงทะเบียน Bright Data MCP server (CLI) ให้ Claude เรียกเครื่องมือ scraping ได้ ต้องใช้ API token ด้านบน |
+| 5 | `claude plugin install brightdata-plugin@claude-plugins-official --scope local` | เพิ่ม Bright Data skill surface ให้โปรเจกต์นี้ |
 
-After `quicksetup` finishes, run `/setup-utarn-skills` once per repo to configure issue tracker, triage labels, and docs location — see the [Quickstart](./README.md#quickstart-30-second-setup) in the README.
+หลังจาก `quicksetup` เสร็จ ให้รัน `/setup-utarn-skills` ครั้งเดียวต่อ repo เพื่อตั้งค่า issue tracker, triage labels และตำแหน่ง docs — ดู [Quickstart](./README.md#quickstart-30-second-setup) ใน README
