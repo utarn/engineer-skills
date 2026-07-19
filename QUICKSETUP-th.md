@@ -6,6 +6,37 @@
 
 > `ccc` และ `cccc` คือ wrapper สะดวกสำหรับ `claude` — ข้ามการขออนุญาตต่อคำสั่งและต่อเซสชันล่าสุด สอดคล้องกับ flow `--dangerously-skip-permissions` ที่เหลือของ repo นี้สันนิษฐานไว้ พวกมันเรียก `claude` โดยตรง จึงทำงานได้กับทุกคน ไม่ใช่แค่ alias ส่วนตัวของผู้เขียน
 
+## ติดตั้ง Claude Code
+
+ติดตั้ง CLI `claude` ก่อน (คู่มือที่เหลือเรียกใช้มัน) เลือกวิธีใดวิธีหนึ่ง
+
+**Native installer (แนะนำ)** — macOS / Linux / WSL:
+
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+**Windows PowerShell:**
+
+```powershell
+irm https://claude.ai/install.ps1 | iex
+```
+
+**Windows CMD:**
+
+```batch
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+```
+
+ทางเลือก: `brew install --cask claude-code` (macOS), `winget install Anthropic.ClaudeCode` (Windows) หรือ `npm install -g @anthropic-ai/claude-code` (ต้องใช้ Node.js 22+) ดู [เอกสารติดตั้ง Claude Code](https://code.claude.com/docs/en/setup) สำหรับการติดตั้งผ่าน Linux package manager (apt/dnf/apk) และการกำหนดเวอร์ชัน
+
+ตรวจสอบแล้วเข้าสู่ระบบ:
+
+```bash
+claude --version      # พิมพ์เช่น 2.1.211 (Claude Code)
+claude                # เปิดเซสชันโต้ตอบแล้วพาเข้าสู่ระบบ
+```
+
 ## Bash (Linux / macOS)
 
 เพิ่มโค้ดนี้ลงใน `~/.bashrc` (หรือ `~/.zshrc` บน macOS) แล้วเริ่ม shell ใหม่:

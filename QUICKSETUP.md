@@ -6,6 +6,37 @@ Pick your shell and run the **install** block once. That gives you a `ccc` / `cc
 
 > `ccc` and `cccc` are convenience wrappers around `claude` — they skip the per-command permission prompt and continue the last session, matching the `--dangerously-skip-permissions` flow the rest of this repo assumes. They call `claude` directly, so they work for anyone, not just the author's private aliases.
 
+## Install Claude Code
+
+Install the `claude` CLI first (the rest of this guide calls it). Pick one method.
+
+**Native installer (recommended)** — macOS / Linux / WSL:
+
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+**Windows PowerShell:**
+
+```powershell
+irm https://claude.ai/install.ps1 | iex
+```
+
+**Windows CMD:**
+
+```batch
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+```
+
+Alternatives: `brew install --cask claude-code` (macOS), `winget install Anthropic.ClaudeCode` (Windows), or `npm install -g @anthropic-ai/claude-code` (needs Node.js 22+). See the [Claude Code setup docs](https://code.claude.com/docs/en/setup) for Linux package-manager (apt/dnf/apk) install and version pinning.
+
+Verify, then log in:
+
+```bash
+claude --version      # prints e.g. 2.1.211 (Claude Code)
+claude                # opens an interactive session and walks you through login
+```
+
 ## Bash (Linux / macOS)
 
 Add this to `~/.bashrc` (or `~/.zshrc` on macOS), then start a new shell:
