@@ -71,7 +71,32 @@ quicksetup
 
 ## PowerShell (Windows)
 
-Add this to your PowerShell profile (`notepad $PROFILE`), then open a new terminal:
+### Install the Windows tools (once)
+
+Install Git for Windows, PowerShell 7, and Windows Terminal with winget, then make PowerShell 7 the default profile for Windows Terminal:
+
+```powershell
+winget install --id Git.Git -e
+winget install --id Microsoft.PowerShell -e
+winget install --id Microsoft.WindowsTerminal -e
+
+# Set PowerShell 7 as the default profile in Windows Terminal
+$settingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+$ps7 = (Get-Command pwsh).Source
+$settings = Get-Content $settingsPath -Raw | ConvertFrom-Json
+($settings.profiles.list | Where-Object { $_.commandline -eq $ps7 }).guid | ForEach-Object { $settings.defaultProfile = $_ }
+$settings | ConvertTo-Json -Depth 10 | Set-Content $settingsPath
+```
+
+### Create / open your PowerShell profile
+
+If the profile file doesn't exist yet, create it and open it in Notepad:
+
+```powershell
+if (!(Test-Path -Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force }; notepad $PROFILE
+```
+
+Add this to your PowerShell profile, then open a new terminal:
 
 ```powershell
 # Convenience launchers for Claude Code

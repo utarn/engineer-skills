@@ -71,7 +71,32 @@ quicksetup
 
 ## PowerShell (Windows)
 
-เพิ่มโค้ดนี้ลงในโปรไฟล์ PowerShell ของคุณ (`notepad $PROFILE`) แล้วเปิดเทอร์มินัลใหม่:
+### ติดตั้งเครื่องมือบน Windows (ครั้งเดียว)
+
+ติดตั้ง Git for Windows, PowerShell 7 และ Windows Terminal ด้วย winget จากนั้นตั้งค่าให้ PowerShell 7 เป็นโปรไฟล์เริ่มต้นของ Windows Terminal:
+
+```powershell
+winget install --id Git.Git -e
+winget install --id Microsoft.PowerShell -e
+winget install --id Microsoft.WindowsTerminal -e
+
+# ตั้งค่า PowerShell 7 ให้เป็นโปรไฟล์เริ่มต้นใน Windows Terminal
+$settingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+$ps7 = (Get-Command pwsh).Source
+$settings = Get-Content $settingsPath -Raw | ConvertFrom-Json
+($settings.profiles.list | Where-Object { $_.commandline -eq $ps7 }).guid | ForEach-Object { $settings.defaultProfile = $_ }
+$settings | ConvertTo-Json -Depth 10 | Set-Content $settingsPath
+```
+
+### สร้าง / เปิดโปรไฟล์ PowerShell ของคุณ
+
+หากไฟล์โปรไฟล์ยังไม่มีอยู่ ให้สร้างขึ้นแล้วเปิดด้วย Notepad:
+
+```powershell
+if (!(Test-Path -Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force }; notepad $PROFILE
+```
+
+เพิ่มโค้ดนี้ลงในโปรไฟล์ PowerShell ของคุณ แล้วเปิดเทอร์มินัลใหม่:
 
 ```powershell
 # ตัวเปิด Claude Code แบบสะดวก
