@@ -6,9 +6,32 @@ Pick your shell and run the **install** block once. That gives you a `ccc` / `cc
 
 > `ccc` and `cccc` are convenience wrappers around `claude` — they skip the per-command permission prompt and continue the last session, matching the `--dangerously-skip-permissions` flow the rest of this repo assumes. They call `claude` directly, so they work for anyone, not just the author's private aliases.
 
+## Windows prerequisites (run once)
+
+Before installing Claude Code on Windows, install Git for Windows, PowerShell 7, and Windows Terminal with winget, then make PowerShell 7 the default profile for Windows Terminal:
+
+```powershell
+winget install --id Git.Git -e
+winget install --id Microsoft.PowerShell -e
+winget install --id Microsoft.WindowsTerminal -e
+
+# Set PowerShell 7 as the default profile in Windows Terminal
+$settingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+$ps7 = (Get-Command pwsh).Source
+$settings = Get-Content $settingsPath -Raw | ConvertFrom-Json
+($settings.profiles.list | Where-Object { $_.commandline -eq $ps7 }).guid | ForEach-Object { $settings.defaultProfile = $_ }
+$settings | ConvertTo-Json -Depth 10 | Set-Content $settingsPath
+```
+
 ## Install Claude Code
 
 Install the `claude` CLI first (the rest of this guide calls it). Pick one method.
+
+**Linux prerequisites** — on Debian/Ubuntu, make sure Git (and curl) are installed before the native installer:
+
+```bash
+sudo apt update && sudo apt install -y git curl
+```
 
 **Native installer (recommended)** — macOS / Linux / WSL:
 
@@ -70,23 +93,6 @@ quicksetup
 ```
 
 ## PowerShell (Windows)
-
-### Install the Windows tools (once)
-
-Install Git for Windows, PowerShell 7, and Windows Terminal with winget, then make PowerShell 7 the default profile for Windows Terminal:
-
-```powershell
-winget install --id Git.Git -e
-winget install --id Microsoft.PowerShell -e
-winget install --id Microsoft.WindowsTerminal -e
-
-# Set PowerShell 7 as the default profile in Windows Terminal
-$settingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
-$ps7 = (Get-Command pwsh).Source
-$settings = Get-Content $settingsPath -Raw | ConvertFrom-Json
-($settings.profiles.list | Where-Object { $_.commandline -eq $ps7 }).guid | ForEach-Object { $settings.defaultProfile = $_ }
-$settings | ConvertTo-Json -Depth 10 | Set-Content $settingsPath
-```
 
 ### Create / open your PowerShell profile
 

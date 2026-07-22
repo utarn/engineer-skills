@@ -6,9 +6,32 @@
 
 > `ccc` และ `cccc` คือ wrapper สะดวกสำหรับ `claude` — ข้ามการขออนุญาตต่อคำสั่งและต่อเซสชันล่าสุด สอดคล้องกับ flow `--dangerously-skip-permissions` ที่เหลือของ repo นี้สันนิษฐานไว้ พวกมันเรียก `claude` โดยตรง จึงทำงานได้กับทุกคน ไม่ใช่แค่ alias ส่วนตัวของผู้เขียน
 
+## เงื่อนไขเบื้องต้นสำหรับ Windows (รันครั้งเดียว)
+
+ก่อนติดตั้ง Claude Code บน Windows ให้ติดตั้ง Git for Windows, PowerShell 7 และ Windows Terminal ด้วย winget จากนั้นตั้งค่าให้ PowerShell 7 เป็นโปรไฟล์เริ่มต้นของ Windows Terminal:
+
+```powershell
+winget install --id Git.Git -e
+winget install --id Microsoft.PowerShell -e
+winget install --id Microsoft.WindowsTerminal -e
+
+# ตั้งค่า PowerShell 7 ให้เป็นโปรไฟล์เริ่มต้นใน Windows Terminal
+$settingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+$ps7 = (Get-Command pwsh).Source
+$settings = Get-Content $settingsPath -Raw | ConvertFrom-Json
+($settings.profiles.list | Where-Object { $_.commandline -eq $ps7 }).guid | ForEach-Object { $settings.defaultProfile = $_ }
+$settings | ConvertTo-Json -Depth 10 | Set-Content $settingsPath
+```
+
 ## ติดตั้ง Claude Code
 
 ติดตั้ง CLI `claude` ก่อน (คู่มือที่เหลือเรียกใช้มัน) เลือกวิธีใดวิธีหนึ่ง
+
+**เงื่อนไขเบื้องต้นสำหรับ Linux** — บน Debian/Ubuntu ให้ติดตั้ง Git (และ curl) ก่อนตัวติดตั้งแบบ native:
+
+```bash
+sudo apt update && sudo apt install -y git curl
+```
 
 **Native installer (แนะนำ)** — macOS / Linux / WSL:
 
@@ -70,23 +93,6 @@ quicksetup
 ```
 
 ## PowerShell (Windows)
-
-### ติดตั้งเครื่องมือบน Windows (ครั้งเดียว)
-
-ติดตั้ง Git for Windows, PowerShell 7 และ Windows Terminal ด้วย winget จากนั้นตั้งค่าให้ PowerShell 7 เป็นโปรไฟล์เริ่มต้นของ Windows Terminal:
-
-```powershell
-winget install --id Git.Git -e
-winget install --id Microsoft.PowerShell -e
-winget install --id Microsoft.WindowsTerminal -e
-
-# ตั้งค่า PowerShell 7 ให้เป็นโปรไฟล์เริ่มต้นใน Windows Terminal
-$settingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
-$ps7 = (Get-Command pwsh).Source
-$settings = Get-Content $settingsPath -Raw | ConvertFrom-Json
-($settings.profiles.list | Where-Object { $_.commandline -eq $ps7 }).guid | ForEach-Object { $settings.defaultProfile = $_ }
-$settings | ConvertTo-Json -Depth 10 | Set-Content $settingsPath
-```
 
 ### สร้าง / เปิดโปรไฟล์ PowerShell ของคุณ
 
