@@ -1,7 +1,5 @@
 ---
 name: work-on-issues
-effort: xhigh
-model: sonnet
 description: >
   Fetch, implement, and close GitHub/GitLab issues sequentially (one main issue starting with PRD:/feat: at a time). Handles parallel subtasks, dependency parsing, worktrees, and env propagation.
 ---
