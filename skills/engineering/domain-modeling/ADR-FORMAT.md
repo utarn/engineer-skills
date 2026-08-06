@@ -21,6 +21,11 @@ Only include these when they add genuine value. Most ADRs won't need them.
 - **Status** frontmatter (`proposed | accepted | deprecated | superseded by ADR-NNNN`) — useful when decisions are revisited
 - **Considered Options** — only when the rejected alternatives are worth remembering
 - **Consequences** — only when non-obvious downstream effects need to be called out
+- **Code Snippets / Technical Design** — include code snippets (e.g. class definitions, type interfaces, data structures, or algorithmic outlines) and explicit file references to relevant code or mockups in the workspace (using `file://` scheme paths or relative paths) if:
+  - Any part of the feature is considered difficult (such that a smaller AI agent/subagent might struggle or fail to implement it without guidance).
+  - You proposed a specific design, class, or data structure.
+  - There are existing files or reference implementations in the workspace that the subagent should use to improve its coding accuracy.
+  *For simple tasks, omit this and keep the ADR concise as it currently is.*
 
 ## Numbering
 

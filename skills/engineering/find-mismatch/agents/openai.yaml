@@ -1,0 +1,5 @@
+interface:
+  display_name: "Find Mismatch"
+  short_description: "Code review for runtime-breaking bugs"
+policy:
+  allow_implicit_invocation: false

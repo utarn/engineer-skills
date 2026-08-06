@@ -6,7 +6,7 @@ It never reopens the plan. There is no interview, no clarifying round, no propos
 
 ## When to reach for it
 
-You invoke this by typing `/implement` — the agent won't reach for it on its own. It ships with `disable-model-invocation: true`, so no other skill can call it either. Wherever [ask-matt](https://aihero.dev/skills-ask-matt) or [to-tickets](https://aihero.dev/skills-to-tickets) says "then `/implement` per ticket", that is an instruction to you, not something the agent will do unprompted.
+You invoke this by typing `/implement` — the agent won't reach for it on its own. It ships with `disable-model-invocation: true`, so no other skill can call it either. Wherever [ask-utarn](https://aihero.dev/skills-ask-utarn) or [to-tickets](https://aihero.dev/skills-to-tickets) says "then `/implement` per ticket", that is an instruction to you, not something the agent will do unprompted.
 
 Where the work currently lives decides whether this is the right skill:
 
@@ -26,7 +26,7 @@ The same-session case is worth naming because the skill's own first line doesn't
 
 `implement` commits to the branch you are on. It does not create one, and it does not ask. Check you are on the branch you want the work on before you start.
 
-If the tickets came from [to-tickets](https://aihero.dev/skills-to-tickets), the tracker they live on was configured by [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills). `code-review` reads the same configuration to find the originating spec at close-out.
+If the tickets came from [to-tickets](https://aihero.dev/skills-to-tickets), the tracker they live on was configured by [setup-utarn-skills](https://aihero.dev/skills-setup-utarn-skills). `code-review` reads the same configuration to find the originating spec at close-out.
 
 ## What one run does
 
@@ -94,4 +94,4 @@ Its neighbours are [to-tickets](https://aihero.dev/skills-to-tickets), which pro
 
 That trust is why [wayfinder](https://aihero.dev/skills-wayfinder) merges onto the chain at [to-spec](https://aihero.dev/skills-to-spec) rather than looping its map straight into `implement`. Go straight to `implement` from a map only when the effort turned out genuinely small.
 
-[ask-matt](https://aihero.dev/skills-ask-matt) is the router over the whole set when you are not sure which flow you are in.
+[ask-utarn](https://aihero.dev/skills-ask-utarn) is the router over the whole set when you are not sure which flow you are in.
