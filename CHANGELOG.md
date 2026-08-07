@@ -1,5 +1,15 @@
 # utarn-skills
 
+## 1.3.0
+
+### Minor Changes
+
+- Rebase the fork onto upstream `mattpocock/skills` and collapse every utarn customization into a single commit, so future upstream syncs are one rebase.
+  - **Adopted from upstream:** `writing-for-agents` (renamed from `writing-great-skills`), `wait-what`, and `to-questionnaire` (promoted to productivity). The deprecated bucket is emptied.
+  - **Kept:** the utarn rebrand, the custom skills (`find-mismatch`, `to-issues`, `to-issues-yes`, `to-prd`, `to-tickets-yes`, `work-on-issues`, `personal/*`), QUICKSETUP/SETTING docs, and the install scripts. `wizard` stays in `in-progress`.
+  - `to-tickets` and `to-spec` now track upstream exactly; `to-tickets-yes` and `to-prd` layer the assume-yes/PRD updates on the new upstream base.
+  - `work-on-issues` drops the stale `/find-docs` reference in favour of the context7 / brightdata research stack.
+
 ## 1.2.3
 
 ### Patch Changes
