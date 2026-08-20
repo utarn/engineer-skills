@@ -1,0 +1,5 @@
+interface:
+  display_name: "Grill Novice"
+  short_description: "Confirm functional requirements only; the agent settles the technical details"
+policy:
+  allow_implicit_invocation: false

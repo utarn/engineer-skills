@@ -140,6 +140,7 @@ This is just the same in the AI age. There is a communication gap between you an
 
 - [`/grill-me`](./skills/productivity/grill-me/SKILL.md) - for non-code uses
 - [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) - same as [`/grill-me`](./skills/productivity/grill-me/SKILL.md), but adds more goodies (see below)
+- [`/grill-novice`](./skills/engineering/grill-novice/SKILL.md) - same as [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md), but the agent settles the technical details itself and you only answer the functional requirements, in plain simplified English
 
 These are my most popular skills. They help you align with the agent before you get started, and think deeply about the change you're making. Use them _every_ time you want to make a change.
 
@@ -316,6 +317,7 @@ Skills I use daily for code work.
 
 - **[ask-utarn](./skills/engineering/ask-utarn/SKILL.md)** — Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo.
 - **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Grilling session that also builds your project's domain model, sharpening terminology and updating `CONTEXT.md` and ADRs inline.
+- **[grill-novice](./skills/engineering/grill-novice/SKILL.md)** — Grilling session that asks you only the functional requirements, in plain simplified English, while the agent settles every technical detail itself and recaps the assumptions for your veto before anything is written.
 - **[triage](./skills/engineering/triage/SKILL.md)** — Move issues through a state machine of triage roles.
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
 - **[setup-utarn-skills](./skills/engineering/setup-utarn-skills/SKILL.md)** — Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo before using the other engineering skills.

@@ -10,10 +10,11 @@ You invoke this by typing `/grill-me` — the [agent](https://www.aihero.dev/ai-
 
 Reach for it as soon as you have an idea worth taking seriously — a feature, a product direction, a business call, a piece of writing — and long before you have worked out what it involves. Vagueness is not a reason to wait; it is the thing the session eats. If you can already specify the thing precisely, you don't need to grill it.
 
-Which of the three grilling skills you want depends on what is in front of you:
+Which of the four grilling skills you want depends on what is in front of you:
 
 - **Anything, anywhere** — `grill-me`. It needs no repo and writes no files, and the subject doesn't have to be code.
 - **A codebase to align against** — [grill-with-docs](https://aihero.dev/skills-grill-with-docs). The same interview, but [stateful](https://www.aihero.dev/ai-coding-dictionary/stateful): it reads your code and keeps what it learns in `CONTEXT.md` and ADRs.
+- **A codebase, but you only want to answer the functional requirements** — [grill-novice](https://aihero.dev/skills-grill-novice). The same stateful interview, but the agent settles the technical details itself and recaps its assumptions for your veto before writing anything.
 - **Too big for one session** — [wayfinder](https://aihero.dev/skills-wayfinder). It charts the effort as a map and runs grilling sessions inside it.
 
 Leave [plan mode](https://www.aihero.dev/ai-coding-dictionary/agent-mode) off. Plan mode primes the agent to rush toward producing a plan, which is the opposite of staying in inquiry.

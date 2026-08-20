@@ -1,6 +1,6 @@
 {
   "name": "utarn-skills",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Utharn Buranasaksee's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more. Plug-and-play, not vibe coding.",
   "author": {
     "name": "Utharn Buranasaksee",
@@ -21,6 +21,7 @@
     "./skills/engineering/ask-utarn",
     "./skills/engineering/diagnosing-bugs",
     "./skills/engineering/grill-with-docs",
+    "./skills/engineering/grill-novice",
     "./skills/engineering/triage",
     "./skills/engineering/improve-codebase-architecture",
     "./skills/engineering/setup-utarn-skills",
