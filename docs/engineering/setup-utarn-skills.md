@@ -27,7 +27,7 @@ All of it is committed markdown. There is no user-level or global mode: the conf
 
 ## The three decisions
 
-It leads each section with the recommended answer, and skips whatever exploration already settled. Most runs are two confirmations and done.
+It leads each section with the recommended answer, and skips whatever exploration already settled. Most runs are two confirmations and done. Zero confirmations, if that's what you want: [setup-utarn-skills-yes](https://aihero.dev/skills-setup-utarn-skills-yes) takes every recommended default and writes without asking.
 
 | Decision | What it proposes | When it actually asks |
 | --- | --- | --- |

@@ -33,6 +33,8 @@ Before it writes a word, `to-spec` sketches the **seams** the feature will be te
 
 Those agreed seams then travel. [tdd](https://aihero.dev/skills-tdd) works only at pre-agreed seams, and [code-review](https://aihero.dev/skills-code-review) reviews the diff against the spec, so a seam nobody agreed to shows up as a review finding. The binding is indirect — it runs through this document — which is exactly why the seam conversation is worth taking seriously here rather than deferring it to implementation.
 
+When the seams are routine enough to trust, [to-spec-yes](https://aihero.dev/skills-to-spec-yes) is this skill with the check elided: it assumes you approve them and publishes, and the Testing Decisions section records what it assumed.
+
 ## Common questions
 
 **Where did `/to-prd` go?**

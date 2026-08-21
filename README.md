@@ -321,10 +321,12 @@ Skills I use daily for code work.
 - **[triage](./skills/engineering/triage/SKILL.md)** — Move issues through a state machine of triage roles.
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
 - **[setup-utarn-skills](./skills/engineering/setup-utarn-skills/SKILL.md)** — Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo before using the other engineering skills.
+- **[setup-utarn-skills-yes](./skills/engineering/setup-utarn-skills-yes/SKILL.md)** — Like `/setup-utarn-skills`, but accepts every recommended default for the repo (tracker from the remote, default triage labels, matching doc layout) and writes the configuration without a confirmation round.
 - **[to-issues](./skills/engineering/to-issues/SKILL.md)** — Break any plan, spec, or PRD into independently-grabbable issues using vertical slices.
 - **[to-issues-yes](./skills/engineering/to-issues-yes/SKILL.md)** — Like `/to-issues`, but assumes you approve the breakdown and publishes the tracer-bullet issues straight to the tracker without an approval round.
 - **[to-prd](./skills/engineering/to-prd/SKILL.md)** — Turn the current conversation into a PRD and publish it to the issue tracker. No interview — just synthesizes what you've already discussed.
 - **[to-spec](./skills/engineering/to-spec/SKILL.md)** — Turn the current conversation into a spec and publish it to the issue tracker. No interview — just synthesizes what you've already discussed.
+- **[to-spec-yes](./skills/engineering/to-spec-yes/SKILL.md)** — Like `/to-spec`, but assumes you approve the proposed seams and publishes the spec straight to the tracker without a seam check.
 - **[to-tickets](./skills/engineering/to-tickets/SKILL.md)** — Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges — written as text in a local file, or as native blocking links on a real tracker.
 - **[to-tickets-yes](./skills/engineering/to-tickets-yes/SKILL.md)** — Like `/to-tickets`, but assumes you approve the breakdown and publishes the tracer-bullet tickets straight to the configured tracker without an approval round.
 - **[find-mismatch](./skills/engineering/find-mismatch/SKILL.md)** — Systematic code review focusing on bugs that break at runtime and JS/TS static analysis via fallow.
