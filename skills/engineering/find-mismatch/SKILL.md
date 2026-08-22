@@ -1,9 +1,7 @@
 ---
 name: find-mismatch
 effort: high
-description: >
-  Systematic code review focusing on bugs that break at runtime (contract mismatches, logic/async errors, serialization, styling) and JS/TS static analysis via fallow.
-disable-model-invocation: true
+description: Systematic code review focusing on bugs that break at runtime (contract mismatches, logic/async errors, serialization, styling) and JS/TS static analysis via fallow. Use when reviewing code changes for runtime errors, post-implementation checks, finding contract mismatches, or running static analysis via fallow on changed files.
 ---
 
 # Find Mismatch

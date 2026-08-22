@@ -18,7 +18,7 @@ For JS/TS projects it runs `fallow audit` first, filtered to your staged files, 
 
 ## When to reach for it
 
-You invoke this by typing `/find-mismatch` — the agent won't reach for it on its own.
+Type `/find-mismatch`, or the agent reaches for it automatically when a task fits (such as post-implementation review or runtime bug checks).
 
 Reach for it when you want a focused bug hunt on a diff, not the full two-axis Standards/Spec review. For the broader review that also checks conformance to repo standards and faithfulness to the originating spec, use [code-review](https://github.com/utarn/engineer-skills/tree/main/skills/engineering/code-review/SKILL.md) instead. `find-mismatch` is the narrower lens for the times you specifically want runtime-breaking bugs and static-analysis findings called out.
 

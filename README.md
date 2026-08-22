@@ -329,7 +329,6 @@ Skills I use daily for code work.
 - **[to-spec-yes](./skills/engineering/to-spec-yes/SKILL.md)** — Like `/to-spec`, but assumes you approve the proposed seams and publishes the spec straight to the tracker without a seam check.
 - **[to-tickets](./skills/engineering/to-tickets/SKILL.md)** — Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges — written as text in a local file, or as native blocking links on a real tracker.
 - **[to-tickets-yes](./skills/engineering/to-tickets-yes/SKILL.md)** — Like `/to-tickets`, but assumes you approve the breakdown and publishes the tracer-bullet tickets straight to the configured tracker without an approval round.
-- **[find-mismatch](./skills/engineering/find-mismatch/SKILL.md)** — Systematic code review focusing on bugs that break at runtime and JS/TS static analysis via fallow.
 - **[implement](./skills/engineering/implement/SKILL.md)** — Build the work described by a spec, PRD, or set of issues/tickets, driving `/tdd` at pre-agreed seams and closing out with `/code-review` before committing.
 - **[wayfinder](./skills/engineering/wayfinder/SKILL.md)** — Plan a huge chunk of work, more than one agent session can hold, as a shared map of decision tickets on the issue tracker — resolve them one at a time until the way to the destination is clear.
 
@@ -341,6 +340,7 @@ Skills I use daily for code work.
 - **[tdd](./skills/engineering/tdd/SKILL.md)** — Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
 - **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)** — Actively build and sharpen a project's domain model — challenge terms against the glossary, stress-test with edge-case scenarios, and update `CONTEXT.md` and ADRs inline.
 - **[codebase-design](./skills/engineering/codebase-design/SKILL.md)** — Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.
+- **[find-mismatch](./skills/engineering/find-mismatch/SKILL.md)** — Systematic code review focusing on bugs that break at runtime and JS/TS static analysis via fallow.
 - **[code-review](./skills/engineering/code-review/SKILL.md)** — Two-axis review of the diff since a fixed point: **Standards** (does it follow the repo's coding standards, plus a Fowler smell baseline?) and **Spec** (does it faithfully implement the originating issue/spec?), run as parallel sub-agents so neither pollutes the other.
 - **[resolving-merge-conflicts](./skills/engineering/resolving-merge-conflicts/SKILL.md)** — Work through an in-progress git merge or rebase conflict hunk by hunk, resolving by intent traced to each side's primary source, then finish the operation — never `--abort`.
 - **[work-on-issues](./skills/engineering/work-on-issues/SKILL.md)** — Fetch, implement, and close GitHub/GitLab issues sequentially (one main issue starting with PRD:/feat: at a time).
