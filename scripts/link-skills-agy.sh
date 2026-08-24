@@ -5,7 +5,7 @@ set -euo pipefail
 # they can be used by the local Gemini CLI (agy).
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-DEST="/Users/utarn/.gemini/config/skills"
+DEST="${HOME}/.gemini/config/skills"
 
 # If DEST is a symlink, report error
 if [ -L "$DEST" ]; then
@@ -20,6 +20,21 @@ if [ -L "$DEST" ]; then
 fi
 
 mkdir -p "$DEST"
+
+# Clean up broken symlinks pointing into REPO
+for entry in "$DEST"/*; do
+  if [ -L "$entry" ]; then
+    target_link="$(readlink "$entry")"
+    case "$target_link" in
+      "$REPO"/*)
+        if [ ! -e "$entry" ]; then
+          echo "removed stale symlink: $(basename "$entry")"
+          rm -f "$entry"
+        fi
+        ;;
+    esac
+  fi
+done
 
 find "$REPO/skills" -name SKILL.md -not -path '*/node_modules/*' -not -path '*/deprecated/*' -print0 |
 while IFS= read -r -d '' skill_md; do
