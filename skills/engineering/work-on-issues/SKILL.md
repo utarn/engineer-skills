@@ -24,7 +24,8 @@ Terminologies:
    - Verify open (Skip if closed).
    - Detect PRD/Epic by label `PRD` or title prefix `PRD:`. Skip implementation, add to `$PRD_TRACKER` for auto-close check.
 5. **Read Details**: Fetch full issue view and comments (`gh issue view --comments` / `glab issue view --comments`).
-6. **Assign & Label**: Mark `in-progress` (by applying `in-progress` label and removing `ready-for-agent` and `needs-triage`).
+6. **Resolve Parent PRD**: Find the PRD owning this issue — search open PRD issues (`PRD:` prefix or `PRD` label) for a body referencing `#<number>`, or use tracker sub-issue/blocked-by links — and fetch its body and comments. This context is passed to the implementer in Phase 2.
+7. **Assign & Label**: Mark `in-progress` (by applying `in-progress` label and removing `ready-for-agent` and `needs-triage`).
 
 ---
 
@@ -35,16 +36,24 @@ If possible, create native tracker links (e.g., GitLab API `/links` with `is_blo
 ---
 
 ## 4. Phase 2: Implement (One Main Issue at a Time)
+**Sub-agent only.** Every issue is implemented by a dispatched sub-agent — in single-issue mode, batch mode, and onwards mode alike. The orchestrator fetches, triages, dispatches, and submits; it never edits files, writes code, or runs tests itself. If an issue looks too small to bother dispatching, that is exactly the case that still goes to a sub-agent.
+
 1. **Create Worktree**:
    ```bash
    git worktree add .claude/worktrees/issue-<number> -b work-on-issue-<number>
    ```
 2. **Copy `.env` files**: Copy `.env` and `.env.*` files into worktree directory.
-3. **Dispatch Sub-Agent using haiku model** (inside `.claude/worktrees/issue-<number>`): 
+3. **Dispatch Sub-Agent using haiku model** (inside `.claude/worktrees/issue-<number>`):
+   The sub-agent starts with no context beyond this prompt — a constraint not inlined here does not exist for the implementer. Fill every slot below; an AC line like "follows PRD #3" carries no weight until the PRD's actual constraints are inlined.
    Prompt spec:
    ```markdown
    Implement issue #<number>: <title>.
-   Acceptance Criteria: <AC>
+   Issue body (verbatim):
+   <full issue description — summary, acceptance criteria, everything in the body>
+   Issue comments (verbatim, in order, or "none"):
+   <all comments, attributing each to its author>
+   Parent PRD context (#<PRD number>: <PRD title>, or "none"):
+   <full PRD body and its comments, or "no comments">
    Branch/Worktree: work-on-issue-<number> in .claude/worktrees/issue-<number>
    API/best-practices: Search via `context7`, `/brightdata-plugin:search`, `/search`, or WebSearch before writing code if unsure.
    Stuck on errors: If 2+ consecutive failures, you MUST research via `context7`, `/brightdata-plugin:search`, `/search`, or WebSearch first (they are available) to find the correct API/approach, then retry. Only escalate after researching.
@@ -87,15 +96,17 @@ After closing a sub-issue, check all PRDs in `PRD_TRACKER`. Read PRD description
 ---
 
 ## 7. Subtask Parallelization
-Decompose main issue into subtasks if:
+The dispatched sub-agent decomposes the issue into subtasks if:
 - Touch non-overlapping files/folders.
 - Independent outputs (no order dependency).
 Keep sequential if they share files, have strict flow dependencies, or need configuration first.
 
 ### Subtask Prompt Spec:
+Sub-agents are fresh contexts too — each subtask prompt inlines the context bearing on that subtask (same rule as the main dispatch).
 ```markdown
 Implement subtask for issue #<number>: <title>.
 Subtask: <details>
+Issue context (verbatim excerpts bearing on this subtask): <issue body / comments / parent-PRD constraints>
 Working Directory: .claude/worktrees/issue-<number>
 Scope: Modify <MAY_MODIFY>, DO NOT modify <MUST_NOT_MODIFY>.
 Compile/Lint errors: If 2+ consecutive failures or any 3rd party dependency issues, research via `context7`, `/brightdata-plugin:search`, `/search`, or WebSearch first (they are available) to find the correct API/approach, then retry. Check Reference Directories (<RefDirs>) to align configurations.
@@ -119,7 +130,7 @@ Verification: Run relevant tests. Return summary, modified files, test results.
 5. Re-fetch all open issues after finishing (Outer loop) to pick up new main issues. Exit only if no open main issues remain or user interrupts.
 
 ### Single Issue Mode
-Execute the selected issue solo. Skip dependency graph processing.
+Execute only the selected issue, end to end, via the same Phase 2 sub-agent dispatch. Skip dependency graph processing.
 
 ---
 
