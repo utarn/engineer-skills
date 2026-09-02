@@ -1,5 +1,11 @@
 # utarn-skills
 
+## 1.7.0
+
+### Minor Changes
+
+- Update `bug-tracker` skill to solve public bug tracker issues end-to-end using subagents in isolated git worktrees. During triage, it systematically investigates and verifies the issue against source code and attachments, applies taxonomy labels (`bug`/`enhancement`, `area:*`, `priority:*`, `tester-verified`/`needs-reproduction`), marks the issue as `in-progress` while solving, implements fixes and regression tests via subagents (similar to `work-on-issues`), posts a resolution summary comment with an AI disclaimer back to the public tracker repo, marks the issue as `resolved`, and closes it.
+
 ## 1.6.1
 
 ### Patch Changes
