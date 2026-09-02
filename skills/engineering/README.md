@@ -10,6 +10,8 @@ Reachable only when you type them (Claude Code: `disable-model-invocation: true`
 - **[grill-with-docs](./grill-with-docs/SKILL.md)** — Grilling session that also builds your project's domain model, sharpening terminology and updating `CONTEXT.md` and ADRs inline.
 - **[grill-novice](./grill-novice/SKILL.md)** — Grilling session that asks you only the functional requirements, in plain simplified English, while the agent settles every technical detail itself and recaps the assumptions for your veto before anything is written.
 - **[triage](./triage/SKILL.md)** — Move issues through a state machine of triage roles.
+- **[bug-tracker](./bug-tracker/SKILL.md)** — Work the actionable queue of a public GitHub bug tracker one issue at a time: inspect, grill with recommendations, apply the verdict, advance.
+- **[init-bug-tracker](./init-bug-tracker/SKILL.md)** — Initialize or re-sync a bug tracker's label taxonomy (states, types, priorities, verification, derived `area:` labels) and issue forms, and record the tracker for the other skills. Run once per tracker repo.
 - **[improve-codebase-architecture](./improve-codebase-architecture/SKILL.md)** — Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
 - **[setup-utarn-skills](./setup-utarn-skills/SKILL.md)** — Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo.
 - **[setup-utarn-skills-yes](./setup-utarn-skills-yes/SKILL.md)** — Like `/setup-utarn-skills`, but accepts every recommended default for the repo (tracker from the remote, default triage labels, matching doc layout) and writes the configuration without a confirmation round.

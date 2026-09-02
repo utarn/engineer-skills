@@ -39,6 +39,8 @@ A starting situation that generates work, then merges onto the main flow.
 
   Triage is only for issues **you didn't create** — bug reports, incoming feature requests, anything that arrives raw. Tickets that `/to-tickets` produced are already agent-ready, so **don't triage them**.
 
+  When the raw reports land on a **separate public tracker repo** — users and testers filing against a shipped product, code living elsewhere — **`/bug-tracker`** works that queue instead (see Utarn-specific extras).
+
 - **Something's broken** → **`/diagnosing-bugs`**. For the hard ones: the bug that resists a first glance, the intermittent flake, the regression that crept in between two known-good states. It refuses to theorise until it has a **tight feedback loop** — one command that already goes red on *this* bug — then fixes with a regression test. Its post-mortem hands off to **`/improve-codebase-architecture`** when the real finding is that there's no good seam to lock the bug down.
 
 - **A huge, foggy effort — a greenfield project or a huge feature build, too big for one session** → **`/wayfinder`**, the most cognitively demanding flow here. When the way from here to the destination isn't visible yet, it charts a **shared map** of **decision tickets** on the issue tracker and resolves them one at a time — producing **decisions, not deliverables** — until the fog is pushed back and the way is clear. Where **`/grill-with-docs`** sharpens an idea you can hold in one session, wayfinder is for the idea you can't — and it's slower and denser, so save it for exactly that, never a well-scoped feature.
@@ -96,6 +98,7 @@ This fork keeps a few skills that the upstream router above doesn't route to. Th
 - **`/setup-utarn-skills-yes`** — the assume-defaults variant of `/setup-utarn-skills`: it derives every choice from the repo itself (remote → tracker, default triage labels, monorepo signals → doc layout) and writes the configuration without a confirmation round. Reach for it on a fresh repo where the defaults are what you'd pick anyway; run the interactive `/setup-utarn-skills` when you want a say in any of the three, or need a custom tracker like Jira/Linear.
 - **`/find-mismatch`** — a focused code review that hunts for bugs that break at runtime, plus JS/TS static analysis via `fallow`. A narrower alternative to `/code-review` when you specifically want mismatch-detection and static checks, not the two-axis Standards/Spec review.
 - **`/work-on-issues`** — fetch, implement, and close GitHub/GitLab issues sequentially (one main issue starting with `PRD:`/`feat:` at a time). An end-to-end issue driver that wraps the implement → review → close loop for tracked issues.
+- **`/bug-tracker`** and **`/init-bug-tracker`** — the public-tracker pair, for reports that arrive where the code doesn't live. `/init-bug-tracker` creates the tracker's full label taxonomy — states, types, priorities, verification, plus `area:*` labels derived from your repo — seeds its issue forms, and records the tracker in the `## Agent skills` config. `/bug-tracker` then works the actionable queue one issue at a time, inspecting attachments as evidence and grilling each to a verdict with a recommendation on every question. The public variant of `/triage`.
 
 ## Precondition
 

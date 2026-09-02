@@ -1,0 +1,5 @@
+interface:
+  display_name: "Bug Tracker"
+  short_description: "Work the public bug tracker queue"
+policy:
+  allow_implicit_invocation: false

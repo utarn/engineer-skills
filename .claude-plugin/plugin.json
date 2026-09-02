@@ -23,6 +23,8 @@
     "./skills/engineering/grill-with-docs",
     "./skills/engineering/grill-novice",
     "./skills/engineering/triage",
+    "./skills/engineering/bug-tracker",
+    "./skills/engineering/init-bug-tracker",
     "./skills/engineering/improve-codebase-architecture",
     "./skills/engineering/setup-utarn-skills",
     "./skills/engineering/setup-utarn-skills-yes",
