@@ -21,7 +21,7 @@ The blocking edges are the whole point. They make one set of tickets read two wa
 - **Local files** → one file per ticket under `.scratch/<feature>/issues/`, numbered blockers-first, the edges written as text. You work them top-to-bottom, by hand.
 - **A real tracker (GitHub, Linear)** → one issue per ticket, the edges as native blocking links (or sub-issues). Any ticket whose blockers are all done is on the **frontier** and can be grabbed — so several agents can run at once.
 
-`to-tickets-yes` produces the same artifact as `to-tickets`; only the approval step is elided.
+`to-tickets-yes` produces the same artifact as `to-tickets`; the approval loop is the only conversational difference. The behavioural one comes after publishing: it sweeps the uncommitted **planning artifacts** — `CONTEXT.md`, ADRs, the PRD markdown, the local ticket files — into a single commit, so the implement loop starts from a clean tree instead of a working full of loose planning paper.
 
 ## The assume-yes slice
 

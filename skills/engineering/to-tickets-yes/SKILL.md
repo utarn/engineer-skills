@@ -104,4 +104,14 @@ The end-to-end behaviour this ticket makes work, from the user's perspective —
 
 In either form, avoid specific file paths or code snippets — they go stale fast. Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it and note briefly that it came from a prototype. Trim to the decision-rich parts — not a working demo, just the important bits.
 
+### 6. Commit the planning artifacts
+
+Publishing closes the planning phase, but the paper it was written on is often still sitting uncommitted. Run `git status --short` and commit every **planning artifact** this flow touched that is untracked or modified:
+
+- `CONTEXT.md` / `CONTEXT-MAP.md` and any `docs/adr/` file
+- the PRD or spec markdown, if one was written into the repo
+- the local ticket files under `.scratch/<feature-slug>/issues/`
+
+Stage exactly those paths — a blanket `git add` drags unrelated work into the commit — as one commit: `docs: <feature-slug> planning artifacts`. Done when `git status --short` lists none of them. If an artifact path is gitignored, surface that to the user instead of committing around it.
+
 Work the frontier one ticket at a time with `/implement`, clearing context between tickets.
