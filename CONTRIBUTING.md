@@ -6,11 +6,11 @@ Every issue is judged against the bar in [`SCOPE.md`](./SCOPE.md). Read it first
 
 | You have | Go to |
 | --- | --- |
-| A bug in a skill | [Bug issue](https://github.com/mattpocock/skills/issues/new?template=bug.yml) |
-| A change to an existing skill | [Idea or feedback issue](https://github.com/mattpocock/skills/issues/new?template=idea.yml) |
-| A question, or "how do I...?" | [Discussions: Q&A](https://github.com/mattpocock/skills/discussions/categories/q-a) |
-| An idea for a new skill, or a skill to donate | [Discussions: Ideas](https://github.com/mattpocock/skills/discussions/categories/ideas) |
-| Support for another harness or issue tracker | [Discussions: Ideas](https://github.com/mattpocock/skills/discussions/categories/ideas), after you read [`.out-of-scope/`](./.out-of-scope) |
+| A bug in a skill | [Bug issue](https://github.com/utarn/engineer-skills/issues/new?template=bug.yml) |
+| A change to an existing skill | [Idea or feedback issue](https://github.com/utarn/engineer-skills/issues/new?template=idea.yml) |
+| A question, or "how do I...?" | [Discussions: Q&A](https://github.com/utarn/engineer-skills/discussions/categories/q-a) |
+| An idea for a new skill, or a skill to donate | [Discussions: Ideas](https://github.com/utarn/engineer-skills/discussions/categories/ideas) |
+| Support for another harness or issue tracker | [Discussions: Ideas](https://github.com/utarn/engineer-skills/discussions/categories/ideas), after you read [`.out-of-scope/`](./.out-of-scope) |
 
 Pull requests are open to collaborators only, so describe the fix in an issue instead.
 
@@ -22,4 +22,4 @@ Agents are welcome to help, but you post the issue, so you own it:
 - **Short.** If it does not fit on one screen, cut it.
 - **Repro first.** The steps that show the problem come before any analysis.
 - **No pasted specs.** No full proposals, plans, or rewritten `SKILL.md` files. Describe the problem; the fix is ours to design.
-- **Not your project's issues.** If your agent files the specs or tickets for your own project here, it has the wrong repo. Run `/setup-matt-pocock-skills` in your project.
+- **Not your project's issues.** If your agent files the specs or tickets for your own project here, it has the wrong repo. Run `/setup-utarn-skills` in your project.

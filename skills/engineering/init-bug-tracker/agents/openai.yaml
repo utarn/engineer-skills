@@ -1,0 +1,5 @@
+interface:
+  display_name: "Init Bug Tracker"
+  short_description: "Set up the bug tracker label taxonomy"
+policy:
+  allow_implicit_invocation: false

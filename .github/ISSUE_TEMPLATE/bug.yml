@@ -5,9 +5,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Keep it short and put the repro first. If an agent wrote this for you, cut it down to the repro before you post. See [CONTRIBUTING.md](https://github.com/mattpocock/skills/blob/main/CONTRIBUTING.md).
+        Keep it short and put the repro first. If an agent wrote this for you, cut it down to the repro before you post. See [CONTRIBUTING.md](https://github.com/utarn/engineer-skills/blob/main/CONTRIBUTING.md).
 
-        Bugs in `skills/misc/` are not fixed (see [`.out-of-scope/frozen-misc-skills.md`](https://github.com/mattpocock/skills/blob/main/.out-of-scope/frozen-misc-skills.md)). Installer problems with `npx skills` belong at skills.sh.
+        Bugs in `skills/misc/` are not fixed (see [`.out-of-scope/frozen-misc-skills.md`](https://github.com/utarn/engineer-skills/blob/main/.out-of-scope/frozen-misc-skills.md)). Installer problems with `npx skills` belong at skills.sh.
   - type: input
     id: skill
     attributes:

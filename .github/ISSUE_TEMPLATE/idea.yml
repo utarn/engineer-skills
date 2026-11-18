@@ -5,10 +5,10 @@ body:
   - type: markdown
     attributes:
       value: |
-        This repo is curated. An idea stays open only if it clears **both** parts of the bar in [`SCOPE.md`](https://github.com/mattpocock/skills/blob/main/SCOPE.md):
+        This repo is curated. An idea stays open only if it clears **both** parts of the bar in [`SCOPE.md`](https://github.com/utarn/engineer-skills/blob/main/SCOPE.md):
 
         1. **Observed failure**: it describes something that went wrong in a real session, not a hypothetical improvement.
-        2. **Fits the philosophy**: it doesn't match anything in [`.out-of-scope/`](https://github.com/mattpocock/skills/tree/main/.out-of-scope), and it isn't a config option, a harness-specific branch, or a personal-workflow tweak.
+        2. **Fits the philosophy**: it doesn't match anything in [`.out-of-scope/`](https://github.com/utarn/engineer-skills/tree/main/.out-of-scope), and it isn't a config option, a harness-specific branch, or a personal-workflow tweak.
 
         New skills are not accepted. `misc/` skills are frozen.
   - type: checkboxes

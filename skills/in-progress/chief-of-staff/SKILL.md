@@ -41,8 +41,8 @@ Three operations keep it alive:
 
 The wiki is a historical record. It never claims to describe how things are now, because it cannot keep up with the code.
 
-- Date every claim: "On 2026-10-13, Matt decided..."
-- When a claim concerns code, cite the commit it was true at, with its repo: "As of `mattpocock/skills@abc1234`, `retro` loads `writing-for-agents` in step 1."
+- Date every claim: "On 2026-10-13, Utharn decided..."
+- When a claim concerns code, cite the commit it was true at, with its repo: "As of `utarn/engineer-skills@abc1234`, `retro` loads `writing-for-agents` in step 1."
 - Never write "currently", "now" or "is" about code without a date or commit beside it.
 - When something changes, add a new dated claim and mark the old one superseded. Don't rewrite the old one.
 

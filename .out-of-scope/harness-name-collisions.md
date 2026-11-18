@@ -11,8 +11,8 @@ How a harness resolves two things with the same name is the harness's behaviour,
 The way through is namespaced invocation. The Claude Code plugin exposes every skill under its plugin name, so you can always reach ours explicitly:
 
 ```
-/mattpocock-skills:research
-/mattpocock-skills:code-review
+/utarn-skills:research
+/utarn-skills:code-review
 ```
 
 If you installed with skills.sh, the files are yours: rename the folder and the `name:` field in your copy.

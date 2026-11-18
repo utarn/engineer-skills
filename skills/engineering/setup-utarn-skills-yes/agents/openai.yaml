@@ -1,0 +1,5 @@
+interface:
+  display_name: "Setup Utarn's Skills Yes"
+  short_description: "Configure the skills with the repo's defaults"
+policy:
+  allow_implicit_invocation: false

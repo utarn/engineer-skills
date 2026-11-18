@@ -1,6 +1,6 @@
 # Issue tracker integrations: GitHub, GitLab and local markdown only
 
-`setup-matt-pocock-skills` offers first-class support for exactly three issue trackers, one per seed template in `skills/engineering/setup-matt-pocock-skills/`:
+`setup-utarn-skills` offers first-class support for exactly three issue trackers, one per seed template in `skills/engineering/setup-utarn-skills/`:
 
 - **GitHub** (`issue-tracker-github.md`, via `gh`)
 - **GitLab** (`issue-tracker-gitlab.md`, via `glab`)
@@ -14,7 +14,7 @@ Every issue-tracker backend hard-codes a CLI shape into the skills (commands, fl
 
 Popularity doesn't change this. Jira is widely used and has an official CLI (`acli`), and it still isn't getting a template: it's a backend I don't run, with its own link semantics, workflow states and CLI quirks to keep tested. The cost lands on me whether or not the tool is mainstream.
 
-Every other tracker goes through the **Other** option in `/setup-matt-pocock-skills`: you describe your workflow in a paragraph and the skill records it as prose in `docs/agents/issue-tracker.md`. That file is yours. If you've refined a Jira or Linear workflow that works, keep it in your own repo or publish it, and point the setup at it.
+Every other tracker goes through the **Other** option in `/setup-utarn-skills`: you describe your workflow in a paragraph and the skill records it as prose in `docs/agents/issue-tracker.md`. That file is yours. If you've refined a Jira or Linear workflow that works, keep it in your own repo or publish it, and point the setup at it.
 
 ## Prior requests
 

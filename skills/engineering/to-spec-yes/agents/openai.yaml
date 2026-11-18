@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Spec Yes"
+  short_description: "Turn a conversation into a spec, assuming the seams"
+policy:
+  allow_implicit_invocation: false

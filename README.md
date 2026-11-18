@@ -10,13 +10,15 @@
 
 # Skills For Real Engineers
 
-[![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
+[![skills.sh](https://skills.sh/b/utarn/engineer-skills)](https://skills.sh/utarn/engineer-skills)
 
-My agent skills that I use every day to do real engineering - not vibe coding.
+Agent skills that Utharn Buranasaksee uses every day to do real engineering - not vibe coding.
 
 Developing real applications is hard. Approaches like GSD, BMAD, and Spec-Kit try to help by owning the process. But while doing so, they take away your control and make bugs in the process hard to resolve.
 
 These skills are designed to be small, easy to adapt, and composable. They work with any model. They're based on decades of engineering experience. Hack around with them. Make them your own. Enjoy.
+
+![Curriculum](curriculum.png)
 
 If you want to keep up with changes to these skills, and any new ones I create, you can join ~60,000 other devs on my newsletter:
 
@@ -24,7 +26,7 @@ If you want to keep up with changes to these skills, and any new ones I create, 
 
 ## Installation (30-second setup)
 
-A plugin updates itself. [skills.sh](https://skills.sh/mattpocock/skills) copies editable files into your project, and you update them by hand. Pick one per agent, because installing both gives you every skill twice.
+A plugin updates itself. [skills.sh](https://skills.sh/utarn/engineer-skills) copies editable files into your project, and you update them by hand. Pick one per agent, because installing both gives you every skill twice.
 
 ### 1. Get the skills
 
@@ -32,10 +34,11 @@ A plugin updates itself. [skills.sh](https://skills.sh/mattpocock/skills) copies
 <summary><strong>Claude Code</strong></summary>
 
 ```bash
-claude plugin install mattpocock-skills@claude-plugins-official
+claude plugin marketplace add utarn/engineer-skills
+claude plugin install utarn-skills@utarn
 ```
 
-Updates itself by default.
+Updates itself when the plugin `version` changes.
 
 </details>
 
@@ -43,8 +46,8 @@ Updates itself by default.
 <summary><strong>Codex</strong></summary>
 
 ```bash
-codex plugin marketplace add mattpocock/skills
-codex plugin add mattpocock-skills@mattpocock
+codex plugin marketplace add utarn/engineer-skills
+codex plugin add utarn-skills@utarn
 ```
 
 Updates itself at startup.
@@ -55,8 +58,8 @@ Updates itself at startup.
 <summary><strong>GitHub Copilot</strong> (CLI and VS Code)</summary>
 
 ```bash
-copilot plugin marketplace add mattpocock/skills
-copilot plugin install mattpocock-skills@mattpocock
+copilot plugin marketplace add utarn/engineer-skills
+copilot plugin install utarn-skills@utarn
 ```
 
 Then, once, add to `~/.copilot/settings.json`:
@@ -64,12 +67,12 @@ Then, once, add to `~/.copilot/settings.json`:
 ```json
 {
   "extraKnownMarketplaces": {
-    "mattpocock": { "source": { "source": "github", "repo": "mattpocock/skills" }, "autoUpdate": true }
+    "utarn": { "source": { "source": "github", "repo": "utarn/engineer-skills" }, "autoUpdate": true }
   }
 }
 ```
 
-In VS Code, run **Chat: Install Plugin From Source** and enter `https://github.com/mattpocock/skills`. It updates daily.
+In VS Code, run **Chat: Install Plugin From Source** and enter `https://github.com/utarn/engineer-skills`. It updates daily.
 
 </details>
 
@@ -77,8 +80,8 @@ In VS Code, run **Chat: Install Plugin From Source** and enter `https://github.c
 <summary><strong>Gemini CLI</strong> (manual updates)</summary>
 
 ```bash
-gemini skills install https://github.com/mattpocock/skills.git --path skills/engineering
-gemini skills install https://github.com/mattpocock/skills.git --path skills/productivity
+gemini skills install https://github.com/utarn/engineer-skills.git --path skills/engineering
+gemini skills install https://github.com/utarn/engineer-skills.git --path skills/productivity
 ```
 
 Re-run both commands to update.
@@ -89,14 +92,14 @@ Re-run both commands to update.
 <summary><strong>Any other agent, or editable files</strong> (manual updates)</summary>
 
 ```bash
-npx skills@latest add mattpocock/skills -a <agent>  # cursor, opencode, devin, windsurf, amp, pi; omit -a to choose
+npx skills@latest add utarn/engineer-skills -a <agent>  # cursor, opencode, devin, windsurf, amp, pi; omit -a to choose
 ```
 
-When the installer asks which skills to take, include `setup-matt-pocock-skills`. To update, run `npx skills@latest update`, and re-run `add` to pick up new skills.
+When the installer asks which skills to take, include `setup-utarn-skills`. To update, run `npx skills@latest update`, and re-run `add` to pick up new skills.
 
 </details>
 
-### 2. Run `/setup-matt-pocock-skills`
+### 2. Run `/setup-utarn-skills`
 
 In your agent, run it once per repo. It will:
 
@@ -105,6 +108,24 @@ In your agent, run it once per repo. It will:
 - Ask you where you want to save any docs we create
 
 ### 3. Bam - you're ready to go.
+
+## วิธีติดตั้ง (ภาษาไทย)
+
+ติดตั้งสกิลทั้งหมดแบบ global:
+
+```bash
+npx skills@latest add utarn/engineer-skills -g
+```
+
+จากนั้นรันอัปเดต:
+
+```bash
+npx skills update -g -y
+```
+
+คำอธิบายคำสั่ง:
+- **`npx skills add utarn/engineer-skills -g`** — ดาวน์โหลดสกิลทั้งหมดจาก repo นี้ไปไว้ในเครื่องแบบ global (`-g` = global) คำสั่งนี้ต้องใช้ครั้งเดียว
+- **`npx skills update -g -y`** — อัปเดตสกิลทั้งหมดในเครื่องให้เป็นเวอร์ชันล่าสุด (`-y` = ยืนยันอัตโนมัติโดยไม่ต้องถาม) ใช้คำสั่งนี้เมื่อต้องการซิงค์สกิลเวอร์ชันใหม่
 
 ## Why These Skills Exist
 
@@ -124,6 +145,7 @@ This is just the same in the AI age. There is a communication gap between you an
 
 - [`/grill-me`](./skills/productivity/grill-me/SKILL.md) - for non-code uses
 - [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) - same as [`/grill-me`](./skills/productivity/grill-me/SKILL.md), but adds more goodies (see below)
+- [`/grill-novice`](./skills/engineering/grill-novice/SKILL.md) - same as [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md), but the agent settles the technical details itself and you only answer the functional requirements, in plain simplified English
 
 These are my most popular skills. They help you align with the agent before you get started, and think deeply about the change you're making. Use them _every_ time you want to make a change.
 
@@ -216,13 +238,22 @@ Skills I use daily for code work.
 
 **User-invoked**
 
-- **[ask-matt](./skills/engineering/ask-matt/SKILL.md)**: Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo.
+- **[ask-utarn](./skills/engineering/ask-utarn/SKILL.md)**: Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo.
 - **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)**: Grilling session that also builds your project's domain model, sharpening terminology and updating `GLOSSARY.md` and ADRs inline.
+- **[grill-novice](./skills/engineering/grill-novice/SKILL.md)**: Grilling session that asks you only the functional requirements, in plain simplified English, while the agent settles every technical detail itself and recaps the assumptions for your veto before anything is written.
 - **[triage](./skills/engineering/triage/SKILL.md)**: Move issues through a state machine of triage roles.
+- **[bug-tracker](./skills/engineering/bug-tracker/SKILL.md)**: Work the actionable queue of a public GitHub bug tracker one issue at a time: investigate and verify, tag, solve via subagents, comment, mark resolved, and close.
+- **[init-bug-tracker](./skills/engineering/init-bug-tracker/SKILL.md)**: Initialize or re-sync a bug tracker's label taxonomy (states, types, priorities, verification, derived `area:` labels) and issue forms, and record the tracker for the other skills. Run once per tracker repo.
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)**: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
-- **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)**: Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo before using the other engineering skills.
+- **[setup-utarn-skills](./skills/engineering/setup-utarn-skills/SKILL.md)**: Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo before using the other engineering skills.
+- **[setup-utarn-skills-yes](./skills/engineering/setup-utarn-skills-yes/SKILL.md)**: Like `/setup-utarn-skills`, but accepts every recommended default for the repo (tracker from the remote, default triage labels, matching doc layout) and writes the configuration without a confirmation round.
+- **[to-issues](./skills/engineering/to-issues/SKILL.md)**: Break any plan, spec, or PRD into independently-grabbable issues using vertical slices.
+- **[to-issues-yes](./skills/engineering/to-issues-yes/SKILL.md)**: Like `/to-issues`, but assumes you approve the breakdown and publishes the tracer-bullet issues straight to the tracker without an approval round.
+- **[to-prd](./skills/engineering/to-prd/SKILL.md)**: Turn the current conversation into a PRD and publish it to the issue tracker. No interview, just synthesizes what you've already discussed.
 - **[to-spec](./skills/engineering/to-spec/SKILL.md)**: Turn the current conversation into a spec and publish it to the issue tracker. No interview, just synthesizes what you've already discussed.
+- **[to-spec-yes](./skills/engineering/to-spec-yes/SKILL.md)**: Like `/to-spec`, but assumes you approve the proposed seams and publishes the spec straight to the tracker without a seam check.
 - **[to-tickets](./skills/engineering/to-tickets/SKILL.md)**: Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges, written as text in a local file, or as native blocking links on a real tracker.
+- **[to-tickets-yes](./skills/engineering/to-tickets-yes/SKILL.md)**: Like `/to-tickets`, but assumes you approve the breakdown and publishes the tracer-bullet tickets straight to the configured tracker without an approval round.
 - **[implement](./skills/engineering/implement/SKILL.md)**: Build the work described by a spec or set of tickets, driving `/tdd` at pre-agreed seams and closing out with `/code-review` before committing.
 - **[implement-spec](./skills/engineering/implement-spec/SKILL.md)**: Implement a whole spec on one integration branch. Works the tickets as a task graph, running implementer subagents across the ready frontier for maximum concurrency, then closes out with `/code-review`.
 - **[wayfinder](./skills/engineering/wayfinder/SKILL.md)**: Plan a huge chunk of work, more than one agent session can hold, as a shared map of decision tickets on the issue tracker, and resolve them one at a time until the way to the destination is clear.
@@ -236,9 +267,10 @@ Skills I use daily for code work.
 - **[tdd](./skills/engineering/tdd/SKILL.md)**: Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
 - **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)**: Actively build and sharpen a project's domain model: challenge terms against the glossary, stress-test with edge-case scenarios, and update `GLOSSARY.md` and ADRs inline.
 - **[codebase-design](./skills/engineering/codebase-design/SKILL.md)**: Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.
+- **[find-mismatch](./skills/engineering/find-mismatch/SKILL.md)**: Systematic code review focusing on bugs that break at runtime and JS/TS static analysis via fallow.
 - **[code-review](./skills/engineering/code-review/SKILL.md)**: Two-axis review of the diff since a fixed point: **Standards** (does it follow the repo's coding standards, plus a Fowler smell baseline?) and **Spec** (does it faithfully implement the originating issue/spec?), run as parallel sub-agents so neither pollutes the other.
 - **[pr](./skills/engineering/pr/SKILL.md)**: The shape a pull request body should take: a summary as the smallest visual that makes the change clear, before/after evidence that it works, and a merge-danger call (one-way or two-way door, plus blast radius).
-- **[wizard](./skills/engineering/wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.
+- **[work-on-issues](./skills/engineering/work-on-issues/SKILL.md)**: Fetch, implement, and close GitHub/GitLab issues sequentially (one main issue starting with PRD:/feat: at a time).
 
 ### Productivity
 
@@ -254,5 +286,89 @@ General workflow tools, not code-specific.
 
 **Model-invoked**
 
-- **[grilling](./skills/productivity/grilling/SKILL.md)**: Interview the user relentlessly about a plan, decision, or idea until every branch of the design tree is resolved. The reusable interview primitive behind `grill-me`, `grill-with-docs`, `triage`, `wayfinder` and `improve-codebase-architecture`.
+- **[grilling](./skills/productivity/grilling/SKILL.md)**: Interview the user relentlessly about a plan, decision, or idea until every branch of the decision tree is resolved. The reusable loop behind `grill-me` and `grill-with-docs`.
 - **[writing-for-agents](./skills/productivity/writing-for-agents/SKILL.md)**: Writing documents for agents: skills, AGENTS.md/CLAUDE.md, and any doc an agent reaches by a pointer.
+
+## Install Claude Code Plugins
+
+To install the bundled Claude Code plugins, run the corresponding command for your platform.
+
+**Unix / macOS:**
+
+```bash
+mkdir -p ~/.claude && cp -R /tmp/skills/engineer-skills-main/skills/* ~/.claude/plugins/ && \
+echo "Plugins installed"
+```
+
+**Windows PowerShell:**
+
+```powershell
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\plugins"
+Copy-Item -Recurse -Force $env:TEMP\engineer-skills-main\skills\* "$env:USERPROFILE\.claude\plugins\"
+```
+
+### Plugin list
+
+The following plugins are included (all marked `true` for `claude-plugins-official`):
+
+| Plugin ID |
+|---|
+| `pyright-lsp@claude-plugins-official` |
+| `clangd-lsp@claude-plugins-official` |
+| `rust-analyzer-lsp@claude-plugins-official` |
+| `gopls-lsp@claude-plugins-official` |
+| `context7@claude-plugins-official` |
+| `frontend-design@claude-plugins-official` |
+| `superpowers@claude-plugins-official` |
+| `playwright@claude-plugins-official` |
+| `brightdata-plugin@claude-plugins-official` |
+| `typescript-lsp@claude-plugins-official` |
+| `jdtls-lsp@claude-plugins-official` |
+| `php-lsp@claude-plugins-official` |
+| `kotlin-lsp@claude-plugins-official` |
+| `swift-lsp@claude-plugins-official` |
+| `lua-lsp@claude-plugins-official` |
+| `ruby-lsp@claude-plugins-official` |
+| `liquid-lsp@claude-plugins-official` |
+| `code-review@claude-plugins-official` |
+| `skill-creator@claude-plugins-official` |
+| `github@claude-plugins-official` |
+| `claude-md-management@claude-plugins-official` |
+| `csharp-lsp@claude-plugins-official` |
+| `code-simplifier@claude-plugins-official` |
+| `feature-dev@claude-plugins-official` |
+| `security-guidance@claude-plugins-official` |
+
+The following plugins are included:
+
+| Plugin | Purpose |
+|---|---|
+| `pyright-lsp` | Python language server |
+| `clangd-lsp` | C/C++ language server |
+| `rust-analyzer-lsp` | Rust language server |
+| `gopls-lsp` | Go language server |
+| `context7` | Documentation lookup |
+| `frontend-design` | Frontend UI design |
+| `superpowers` | Superpowers AI assistant |
+| `playwright` | Browser automation |
+| `brightdata-plugin` | Web scraping |
+| `typescript-lsp` | TypeScript language server |
+| `jdtls-lsp` | Java language server |
+| `php-lsp` | PHP language server |
+| `kotlin-lsp` | Kotlin language server |
+| `swift-lsp` | Swift language server |
+| `lua-lsp` | Lua language server |
+| `ruby-lsp` | Ruby language server |
+| `liquid-lsp` | Liquid language server |
+| `code-review` | Code review assistance |
+| `skill-creator` | Create new skills |
+| `github` | GitHub integration |
+| `claude-md-management` | Markdown management |
+| `csharp-lsp` | C# language server |
+| `code-simplifier` | Code simplification |
+| `feature-dev` | Feature development |
+| `security-guidance` | Security guidance |
+
+---
+
+This project is forked from https://github.com/mattpocock/skills

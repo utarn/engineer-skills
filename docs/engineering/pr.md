@@ -76,4 +76,4 @@ Not by itself. One user's approach is a standing instruction in the repo's agent
 - [code-review](https://aihero.dev/skills-code-review) runs before it, because a PR body should describe a diff that has already been reviewed.
 - [implement](https://aihero.dev/skills-implement) produces the commits the body describes.
 
-[ask-matt](https://aihero.dev/skills-ask-matt) routes across the whole set when you are unsure which skill the situation wants.
+[ask-utarn](https://aihero.dev/skills-ask-utarn) routes across the whole set when you are unsure which skill the situation wants.
