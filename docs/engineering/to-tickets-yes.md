@@ -27,6 +27,22 @@ The blocking edges are the whole point. They make one set of tickets read two wa
 
 The defining idea is the **tracer-bullet vertical slice** with the approval step elided. It drafts the same edge-declaring slices `to-tickets` would, presents them, and proceeds to publish — trusting the breakdown. Each ticket describes end-to-end behaviour with acceptance criteria and a "Blocked by" field, never file paths or code that go stale. Wide refactors still get the expand–contract exception rather than being forced into a tracer bullet.
 
+The assume-yes part is the approval step, not the sizing rule. Every slice must fit one fresh implementer [context window](https://www.aihero.dev/ai-coding-dictionary/context-window) with headroom for the prompt, tool output, and reasoning — roughly 100K tokens of working material. A ticket that needs a long file list, many modules, or more than a handful of acceptance criteria is split vertically before publishing, with the new blocking edges wired in. The ticket count is an output of that budget, never a target; merging slices to keep the count down is how a ticket arrives too large for the context it is implemented in.
+
+## Common questions
+
+**Does "yes" also skip the context-size check?**
+No. The "yes" removes the approval round, not the sizing rule. Every slice still has to fit one fresh implementer context window with headroom, and an over-budget draft is split before publishing. Trusting the breakdown means trusting the slices were sized, not skipping the check that made them trustworthy.
+
+## It's working if
+
+- Every ticket reads as a narrow end-to-end slice, not a layer or a file list.
+- Each ticket's acceptance criteria fit on one screen and can be verified in one implementer run.
+- Oversized drafts were split into smaller vertical slices before publishing, with blocking edges added.
+- It never pauses for approval — the trace runs from breakdown to published tickets.
+- The publish order respects blocking edges, so each ticket can be grabbed as soon as its blockers close.
+- The published tickets describe behaviour and criteria, not file paths or code that will go stale.
+
 ## Where it fits
 
 `to-tickets-yes` is a **chain step** — the non-interactive sibling of `to-tickets`, sitting between the spec and the implement loop:

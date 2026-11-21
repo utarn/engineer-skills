@@ -1,5 +1,14 @@
 # utarn-skills
 
+## 1.8.3
+
+### Patch Changes
+
+- Tighten ticket sizing and add an audit gate.
+
+  - `to-tickets-yes` now checks every vertical slice against one fresh implementer context window with headroom, and splits oversized slices before publishing. The ticket count is an output of the context budget, not a target.
+  - `work-on-issues` now marks a ticket `resolved` as soon as the implementer commits and immediately dispatches an independent code auditor. The auditor checks for unimplemented acceptance criteria and poor implementations, fixes land in a follow-up `fix: audit` commit, and the PR is gated on a clean verdict. Audits can overlap the next issue's implementation in batch mode.
+
 ## 1.8.2
 
 ### Patch Changes

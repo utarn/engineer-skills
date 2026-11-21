@@ -1,7 +1,7 @@
 ---
 name: work-on-issues
 description: >
-  Fetch, implement, and close GitHub/GitLab issues sequentially (one main issue starting with PRD:/feat: at a time). Handles parallel subtasks, dependency parsing, worktrees, and env propagation.
+  Fetch, implement, audit, and close GitHub/GitLab issues sequentially (one main issue starting with PRD:/feat: at a time). Handles parallel subtasks, dependency parsing, worktrees, and env propagation. Every resolved ticket gets an independent code audit against its acceptance criteria before it merges.
 ---
 
 # Work on Issues
@@ -66,11 +66,36 @@ If possible, create native tracker links (e.g., GitLab API `/links` with `is_blo
 
 ---
 
-## 5. Phase 3: Submit & Close
+## 5. Phase 2.5: Code Audit
+
+The implementation is resolved when its commit lands, but it is not accepted until an independent auditor has read it against the ticket's own criteria. **Issue the audit as soon as the ticket is marked resolved** — do not wait for the PR/MR to be created or merged. In batch mode, the audit for issue N may run while issue N+1 is being implemented, but issue N must not merge or close until its audit is clean.
+
+1. **Mark resolved.** After the implementer returns its commit, apply the `resolved` label and post a `Resolved` comment naming the commit. That marks the implementation claim; it does not close the issue.
+2. **Dispatch the code auditor.** A fresh-context sub-agent (never a fork of this conversation), in the same worktree, with the issue body, acceptance criteria, comments, parent PRD, and the commit under audit. Prompt spec:
+   ```markdown
+   Audit issue #<number>: <title>.
+   Issue body (verbatim):
+   <full issue description — summary, acceptance criteria, everything>
+   Issue comments (verbatim, in order, or "none"): <...>
+   Parent PRD context: <...>
+   Branch/Worktree: work-on-issue-<number> in .claude/worktrees/issue-<number>
+   Commit under audit: <implementer commit hash>
+   Call the Skill tool with "code-review" over the commit range, and with "find-mismatch" on the modified files. For JS/TS, run `npx fallow audit` (install fallow if missing).
+   Verdict required:
+   - Unimplemented: every acceptance criterion, edge case, or promised behaviour not actually implemented — stubs, TODOs, dead flags, unwired paths, missing tests.
+   - Poorly implemented: behaviour that works but does not meet the criteria — missing error handling, weak or absent tests, contract mismatches, shortcuts the issue rules out.
+   Return findings as a list with file:line, severity, and the criterion each violates, or "clean".
+   ```
+3. **Fix with another commit.** If the verdict has findings, dispatch a fixer sub-agent (fresh context) with the findings and the same worktree. It fixes, runs the tests, and commits `fix: audit #<number> — <summary>`. Re-run the audit against the new commit. Repeat until the auditor returns clean, or the only remaining findings are explicitly out of scope for the ticket and are recorded on the issue.
+4. **Gate the merge.** Phase 3 starts only after the audit is clean.
+
+---
+
+## 6. Phase 3: Submit & Close
 1. **Create PR/MR**: Link to issue using "Closes #<number>".
 2. **Auto-Merge**: Merge immediately (squash & delete branch).
-3. **Comment**: Post summary of implementation.
-4. **Close**: Remove triage/progress labels (like `in-progress`), add `closed`, and close issue.
+3. **Comment**: Post summary of implementation and the audit verdict.
+4. **Close**: Remove triage/progress labels (`in-progress`, `resolved`), add `closed`, and close issue.
 5. **Propagate `.env` files**: Copy modified env files back to main working directory before worktree removal:
    ```bash
    WT=.claude/worktrees/issue-<number>
@@ -90,12 +115,12 @@ If possible, create native tracker links (e.g., GitLab API `/links` with `is_blo
 
 ---
 
-## 6. PRD Auto-Close
+## 7. PRD Auto-Close
 After closing a sub-issue, check all PRDs in `PRD_TRACKER`. Read PRD description/links. If all referenced sub-issues (`#42` etc.) are closed, close the PRD and remove from `PRD_TRACKER`.
 
 ---
 
-## 7. Subtask Parallelization
+## 8. Subtask Parallelization
 The dispatched sub-agent decomposes the issue into subtasks if:
 - Touch non-overlapping files/folders.
 - Independent outputs (no order dependency).
@@ -116,7 +141,7 @@ Verification: Run relevant tests. Return summary, modified files, test results.
 
 ---
 
-## 8. Execution Modes
+## 9. Execution Modes
 
 ### Batch & Onwards Mode
 1. Fetch all open issues, filter to main issues (`PRD:`, `feat:`).
@@ -125,21 +150,23 @@ Verification: Run relevant tests. Return summary, modified files, test results.
 4. **Loop**:
    - Select next issue with zero unresolved blockers. Skip closed or PRD issues.
    - Dispatch sub-agent to worktree.
-   - Run verification -> PR/MR merge -> close -> env propagation -> clean up -> check PRDs.
+   - On the implementer's commit, mark the issue `resolved` and dispatch the code auditor immediately (Phase 2.5). The audit may overlap the next issue's implementation, but this issue cannot merge until it is clean.
+   - Run verification -> code audit -> fix commits -> PR/MR merge -> close -> env propagation -> clean up -> check PRDs.
    - Re-evaluate dependencies. Repeat.
 5. Re-fetch all open issues after finishing (Outer loop) to pick up new main issues. Exit only if no open main issues remain or user interrupts.
 
 ### Single Issue Mode
-Execute only the selected issue, end to end, via the same Phase 2 sub-agent dispatch. Skip dependency graph processing.
+Execute only the selected issue, end to end, via the same Phase 2 dispatch and Phase 2.5 audit. Skip dependency graph processing.
 
 ---
 
-## 9. Labels & Helpers
+## 10. Labels & Helpers
 
 | Label | Meaning | Color |
 |---|---|---|
 | `PRD` | Parent tracking issue | `#0075CA` |
 | `in-progress` | Active | `#E4E669` |
+| `resolved` | Implementation committed; audit in flight | `#FBCA04` |
 | `ready-for-agent` | Ready for agent | `#0E8A16` |
 | `closed` | Closed by AI / Finished | `#5319E7` |
 
@@ -147,11 +174,13 @@ To apply labels, try updating directly. If not found, create label first (e.g. c
 
 ---
 
-## 10. Edge Cases
+## 11. Edge Cases
 - **No CLI**: Use APIs directly or ask user to install `gh`/`glab`.
 - **No Fallow**: Ask user to install `fallow` for JS/TS security audit.
 - **Conflict/Cycle**: Report circular dependencies, skip affected issues.
 - **External Blockers**: Treat open external issues as unresolved blockers.
 - **API Link Failure**: Fall back to text references.
 - **No Main Issues**: Inform user, ask if they want to process non-main issues.
+- **Audit finding belongs elsewhere**: Record it on the issue it belongs to; do not expand this ticket's scope to absorb it.
+- **Audit never converges**: If two fix-and-re-audit rounds still leave material findings, stop and surface the findings on the issue rather than merging unverified work.
 - **Env files gitignored**: Env files must be propagated back before worktree removal to persist across runs. Do not commit secrets.

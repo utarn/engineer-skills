@@ -30,12 +30,20 @@ Break the work into **tracer bullet** tickets.
 
 - Each slice cuts a narrow but COMPLETE path through every layer (schema, API, UI, tests): vertical, NOT a horizontal slice of one layer
 - A completed slice is demoable or verifiable on its own
-- Each slice is sized to fit in a single fresh context window
+- Each slice must fit one fresh implementer context window **with room to spare**. Budget what a fresh agent must hold: the files it must read, the code it must change, the tests it must write and run, and one round of debugging. Aim well under the window — roughly 100K tokens of working material — because the prompt, tool output, and reasoning share the same budget
+- **Narrow beats complete-in-one-layer.** A slice that needs more than a handful of modules, a file list you cannot state in one line, or more than a handful of acceptance criteria is too big. Split it vertically into smaller end-to-end slices; never solve size by dropping the end-to-end path
 - Any prefactoring should be done first
 
 </vertical-slice-rules>
 
 Give each ticket its **blocking edges**: the other tickets that must complete before it can start. A ticket with no blockers can start immediately.
+
+**Size check before publishing.** Walk every slice against the context budget before you present the breakdown:
+
+- Estimate the blast radius: files and modules the implementer must read, layers touched, and the test surface.
+- A ticket whose description needs a long file list, or whose acceptance criteria need more than one screen, is oversized. Split it and wire the new blocking edges.
+- Keep each ticket's acceptance criteria to what one implementer can verify in one run.
+- Do not merge slices to keep the ticket count down. The context budget wins; the ticket count is an output, not a target.
 
 **Wide refactors are the exception to vertical slicing.** A **wide refactor** is one mechanical change (rename a column, retype a shared symbol) whose **blast radius** fans across the whole codebase, so a single edit breaks thousands of call sites at once and no vertical slice can land green. Don't force it into a tracer bullet; sequence it as **expand–contract**. First expand: add the new form beside the old so nothing breaks. Then migrate the call sites over in batches sized by blast radius (per package, per directory), each batch its own ticket blocked by the expand, keeping CI green batch to batch because the old form still exists. Finally contract: delete the old form once no caller remains, in a ticket blocked by every migrate batch. When even the batches can't stay green alone, keep the sequence but let them share an integration branch that all block a final integrate-and-verify ticket; green is promised only there.
 

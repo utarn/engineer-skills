@@ -271,7 +271,7 @@ Skills I use daily for code work.
 - **[find-mismatch](./skills/engineering/find-mismatch/SKILL.md)**: Systematic code review focusing on bugs that break at runtime and JS/TS static analysis via fallow.
 - **[code-review](./skills/engineering/code-review/SKILL.md)**: Two-axis review of the diff since a fixed point: **Standards** (does it follow the repo's coding standards, plus a Fowler smell baseline?) and **Spec** (does it faithfully implement the originating issue/spec?), run as parallel sub-agents so neither pollutes the other.
 - **[pr](./skills/engineering/pr/SKILL.md)**: The shape a pull request body should take: a summary as the smallest visual that makes the change clear, before/after evidence that it works, and a merge-danger call (one-way or two-way door, plus blast radius).
-- **[work-on-issues](./skills/engineering/work-on-issues/SKILL.md)**: Fetch, implement, and close GitHub/GitLab issues sequentially (one main issue starting with PRD:/feat: at a time).
+- **[work-on-issues](./skills/engineering/work-on-issues/SKILL.md)**: Fetch, implement, audit, and close GitHub/GitLab issues sequentially (one main issue starting with PRD:/feat: at a time).
 
 ### Productivity
 
