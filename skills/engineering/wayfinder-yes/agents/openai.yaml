@@ -1,0 +1,5 @@
+interface:
+  display_name: "Wayfinder Yes"
+  short_description: "Ask the direction, then build the full feature"
+policy:
+  allow_implicit_invocation: false

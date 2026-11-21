@@ -1,5 +1,11 @@
 # utarn-skills
 
+## 1.8.1
+
+### Patch Changes
+
+- Add `wayfinder-yes`, the assume-yes variant of `wayfinder`. It reads the user's prompt, asks only the feature-direction question, then charts the same decision map, settles every other decision itself, and builds the complete feature in the same run — no interview rounds and no v1/v2 phasing.
+
 ## 1.8.0
 
 ### Minor Changes
