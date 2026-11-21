@@ -25,7 +25,7 @@ Reachable only when you type them (Claude Code: `disable-model-invocation: true`
 - **[implement](./implement/SKILL.md)**: Build the work described by a spec or set of tickets, driving `/tdd` at pre-agreed seams and closing out with `/code-review` before committing.
 - **[implement-spec](./implement-spec/SKILL.md)**: Implement a whole spec on one integration branch. Works the tickets as a task graph, running implementer subagents across the ready frontier for maximum concurrency, then closes out with `/code-review`.
 - **[wayfinder](./wayfinder/SKILL.md)**: Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on the issue tracker, resolved one at a time until the way to the destination is clear.
-- **[wayfinder-yes](./wayfinder-yes/SKILL.md)**: Like `/wayfinder`, but asks only the feature direction, settles every other decision itself, and builds the complete feature — no interview rounds and no v1/v2 phasing.
+- **[wayfinder-yes](./wayfinder-yes/SKILL.md)**: Like `/wayfinder`, but asks only the feature direction (plus a prototype choice), resolves the whole frontier itself, and builds the complete feature — no interview rounds and no v1/v2 phasing.
 - **[retro](./retro/SKILL.md)**: Suggest improvements to the coding agent's environment (navigation, automated checks, coding standards, steering files, tooling) after a session, most severe first.
 
 ## Model-invoked

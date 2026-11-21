@@ -1,29 +1,31 @@
 ---
 name: wayfinder-yes
-description: The assume-yes wayfinder. Read the prompt, ask only the feature-direction question, then chart the map, settle every other decision yourself, and build the complete feature in one pass — no interview rounds and no v1/v2 phasing.
+description: The assume-yes wayfinder. Read the prompt, ask only the feature-direction question — plus a prototype choice when one is raised — then resolve the whole frontier and build the complete feature. No interview rounds and no v1/v2 phasing.
 disable-model-invocation: true
 ---
 
-A loose idea has arrived, too big for one agent session, and wrapped in fog: the way from here to the **destination** isn't visible yet. Wayfinding is about finding that way. This variant points the same map at the same destination, but removes the interview: it asks the human exactly one question — the **feature direction** — decides everything else itself, and then implements the whole feature.
+A loose idea has arrived, too big for one agent session, and wrapped in fog: the way from here to the **destination** isn't visible yet. Wayfinding is about finding that way. This variant points the same map at the same destination, but removes the interview: it asks the human the **feature direction** only when the prompt does not already give it, and asks one more thing only when a prototype needs a human's taste — which variation to keep. Everything else is the agent's decision, and the complete feature gets built.
 
-The map is the same artifact wayfinder produces: decision tickets on the issue tracker, fog of war, a frontier. The difference is who answers. In wayfinder the human answers the decision tickets; here the agent answers them, choosing the most complete option each time and recording why.
+The map is the same artifact wayfinder produces: decision tickets on the issue tracker, fog of war, a frontier. The difference is who answers. In wayfinder the human answers every decision ticket; here the agent takes the whole frontier itself, choosing the most complete option each time and recording why. The one standing exception is a prototype, whose variations the human chooses.
 
-## One question per run
+## One direction question, one prototype choice
 
-**The only question you may ask is the feature-direction question — at most once per run.**
+**Your question budget is two moments, and neither is an interview:** the feature-direction question, asked at most once per run; and a prototype choice, asked only when a prototype ticket presents variations a human should pick between.
 
-1. **Read the invocation prompt first.** It is the user's direction statement. If it already names the outcome and the scope boundary — what the feature must do and where it stops — ask nothing and start charting.
+1. **Read the invocation prompt first.** It is the user's direction statement. If it already names the outcome and the scope boundary — what the feature must do and where it stops — **ask nothing**. Go straight to the map and start resolving the frontier.
 2. **If the direction is ambiguous, ask once**, in plain language, with a recommendation attached:
 
    > Which direction should this feature take — what outcome do you want, and what is explicitly out of scope?
 
-3. **Do not ask a second question.** Everything the prompt and that answer leave open is yours to decide.
+3. **Do not ask a second direction question.** Everything the prompt and that answer leave open is yours to decide.
+4. **A prototype is the only other question.** Build the variations, present them side by side, say which you recommend and why, and ask the human to choose. Record the choice and continue the loop. This is a design-taste decision, not an implementation question: it is the one place the human's preference wins over the full-feature rule.
+5. **Nothing else is a question.** A ticket that feels like it needs the user is either the feature direction (already answered — interpret it), a prototype choice (handled above), or an implementation detail (yours).
 
-Implementation is never a question. Modules, seams, schemas, APIs, dependencies, file layout, naming, test strategy, and migration shape are all yours. So are rollback, error handling, defaults, and sequencing. If a decision feels like it needs the user, it is either the feature direction (already answered — interpret it) or an implementation detail (yours).
+Implementation is never a question. Modules, seams, schemas, APIs, dependencies, file layout, naming, test strategy, and migration shape are all yours. So are rollback, error handling, defaults, and sequencing.
 
-The one exception is a hard external blocker only a human can clear: a credential, a payment, or access you cannot provision. State the blocker and the exact step once, then continue on everything it does not block. Do not turn it into an interview.
+Outside a prototype choice, the only other pause is a hard external blocker only a human can clear: a credential, a payment, or access you cannot provision. State the blocker and the exact step once, then continue on everything it does not block. Do not turn it into an interview.
 
-If new evidence later contradicts the direction, do not ask a fresh round. Re-read the direction for the most complete reading it supports and revise the map. Only if the evidence makes two mutually exclusive directions equally plausible may you ask the direction question again — and then it is still the only question.
+If new evidence later contradicts the direction, do not ask a fresh round. Re-read the direction for the most complete reading it supports and revise the map. Only if the evidence makes two mutually exclusive directions equally plausible may you ask the direction question again — and then it is still the only direction question.
 
 ## Full feature, no v1/v2
 
@@ -90,12 +92,12 @@ The answer isn't part of the body; it's recorded on resolution (see [Work the ma
 
 ## Ticket types here
 
-Wayfinder separates **HITL** (a human speaks for themselves) from **AFK**. This variant is AFK throughout: the agent answers every decision. The labels stay for interoperability, but the mode changes.
+Wayfinder separates **HITL** (a human speaks for themselves) from **AFK**. This variant is AFK for every decision except the prototype choice: the agent answers the decision tickets, and the human chooses the prototype variation. The labels stay for interoperability, but the modes change.
 
 - **Research** (AFK): Reading documentation, third-party APIs, or local resources to surface a fact a decision waits on. Resolved by a subagent that calls the Skill tool with "research", run in parallel on a `research/<name>` branch. Knowledge outside the working directory.
-- **Prototype** (AFK here): Call the Skill tool with "prototype" to build the cheap, rough artifact yourself, then **choose the most complete variation yourself** and link it from the ticket. Do not present variations for a vote; the full-feature rule picks the one that delivers the most behaviour.
+- **Prototype** (HITL): Call the Skill tool with "prototype" to build the cheap, rough artifact and its variations. Then **ask the human which variation to keep**, presenting them side by side with your recommendation. Link the chosen variation from the ticket and continue the frontier. Never choose for the human here: prototype choice is the exception to assume-yes.
 - **Grilling** (AFK here): The default case. **Do not interview the user.** Call the Skill tool with "domain-modeling", then run the grilling discipline yourself in AFK mode: enumerate the branches of the question, answer each with your recommendation, and record the rationale in the ticket's resolution. No question is sent to the human. A HITL grilling ticket inherited from a `/wayfinder` map is resolved the same way.
-- **Task** (AFK): Work that must happen before a decision can be made, such as provisioning access or moving data so its shape can be seen. Do it yourself. If a step is genuinely human-only, surface that single blocker and its exact step; otherwise it is yours.
+- **Task** (AFK, via subagents): Work that must happen before a decision can be made, such as provisioning access or moving data so its shape can be seen. **Dispatch subagents to do it and keep the loop moving.** Run independent tasks in parallel, record what they did, and continue to the next frontier ticket. Do not ask whether to do it. If a step is genuinely human-only, surface that single blocker and its exact step; otherwise it is the subagents' work.
 
 ## Fog of war
 
@@ -123,8 +125,8 @@ User invokes with a loose idea, optionally with a map to resume (URL or number).
 1. **Read the prompt.** If a map was passed, load it at low resolution and go to step 4. Otherwise, ask the one direction question only if the prompt does not already answer it.
 2. **Name the destination.** From the prompt and the direction answer, write the complete feature as the Destination. Call the Skill tool with "domain-modeling" to keep the vocabulary clean. Settle this before any ticket exists: it fixes the scope.
 3. **Chart the map.** Create it with the `wayfinder:map` label: Destination and Notes filled in, Decisions-so-far empty, the fog sketched into **Not yet specified**. Create the tickets you can specify now as child issues, then wire blocking edges in a **second pass** (issues need ids first). Fire a fresh-context research subagent for each `research` ticket. Do not present the map for approval.
-4. **Resolve the frontier.** Take the first frontier ticket, claim it, and resolve it as its `wayfinder:<type>` label names. Apply the one-question rule: the answer is yours, chosen for the fullest feature. Pick the most complete option, not the smallest. Record the resolution as a **resolution comment** with the rationale, close the issue, and append a context pointer to **Decisions so far**. Then graduate any fog the answer made specifiable, and clear each graduated patch from **Not yet specified**. If the answer puts a ticket past the destination, rule it out of scope. If it invalidates other tickets, update or delete them.
-5. **Keep going until the frontier and the fog are empty.** Do not stop for approval. When context fills, leave the map current and continue in a fresh session from the map — the map is the handoff, so no questions are lost. Work tickets one at a time; concurrent sessions claim as usual.
+4. **Resolve the frontier, ticket by ticket.** Take the next frontier ticket, claim it, and resolve it as its `wayfinder:<type>` label names. Except for a prototype choice, the answer is yours, chosen for the fullest feature: pick the most complete option, not the smallest. Record the resolution as a **resolution comment** with the rationale, close the issue, and append a context pointer to **Decisions so far**. Then graduate any fog the answer made specifiable, clear each graduated patch from **Not yet specified**, and refresh the frontier. If the answer puts a ticket past the destination, rule it out of scope; if it invalidates other tickets, update or delete them.
+5. **Keep taking frontier tickets until there is no frontier left.** This is a loop, not a checklist: while an open, unblocked, unclaimed child exists, take it and resolve it, then take the next. Do not stop for approval, a status update, or a check-in between tickets. The only pauses are a **prototype choice** (ask the human to pick a variation) and a genuinely human-only blocker. If no direction question was needed, there is no pause at all before the first ticket. When context fills mid-loop, leave the map current and continue in a fresh session from the map — the map is the handoff, so nothing is lost and nothing is asked. When fog graduates into new tickets, the frontier refills and the loop continues; stop only when both the frontier and the fog are empty.
 6. **Build the full feature.** With no decisions left, implement the complete Destination. Drive the work with the Skill tool "tdd", one red-green slice at a time, until every behaviour in the Destination is real and tested. Then call the Skill tool with "code-review" over the whole diff and fix what it finds. Do not hand off to `/to-spec`, `/to-tickets`, or `/implement`: this variant carries execution into the map by design.
 7. **Close the map.** Record what was built in a final comment on the map (the feature, the tests, the review verdict), close it, and link the pull request or branch. The only deliverable is the full feature, not a spec.
 

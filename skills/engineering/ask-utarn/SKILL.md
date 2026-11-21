@@ -98,7 +98,7 @@ Off the main flow entirely.
 
 This fork keeps a few skills that the upstream router above doesn't route to. They overlap the main-flow skills but stay available for the workflows they were tuned for:
 
-- **`/wayfinder-yes`** — the assume-yes variant of `/wayfinder`: same map, but it asks only the feature direction, settles every other decision itself, and carries the build inside the map — the complete feature, never a v1/v2 slice. Reach for it when the implementation calls are the agent's to make; use `/wayfinder` when the decisions are yours.
+- **`/wayfinder-yes`** — the assume-yes variant of `/wayfinder`: same map, but it asks only the feature direction (and which prototype variation to keep), resolves the whole frontier itself — subagents for tasks — and carries the build inside the map, the complete feature and never a v1/v2 slice. Reach for it when the implementation calls are the agent's to make; use `/wayfinder` when the decisions are yours.
 - **`/to-prd`** — like `/to-spec`, but writes a PRD-shaped document. Kept for repos that already use the PRD vocabulary.
 - **`/to-issues`** and **`/to-issues-yes`** — like `/to-tickets`, but split a plan/spec/PRD into independently-grabbable issues using vertical slices (and `/to-issues-yes` publishes them straight to the project issue tracker as tracer-bullet issues). Predecessors of `/to-tickets`; reach for them when you want the older issue-splitting behaviour.
 - **`/to-tickets-yes`** — the assume-yes variant of `/to-tickets`: same tracer-bullet tickets with blocking edges, but it skips the approval round and publishes straight to the configured tracker. Reach for it when the breakdown is routine enough to trust without a back-and-forth.

@@ -1,5 +1,11 @@
 # utarn-skills
 
+## 1.8.2
+
+### Patch Changes
+
+- Update `wayfinder-yes` so it runs the frontier to empty without pausing. When no direction question is needed, it resolves the next frontier ticket, refreshes the frontier, and keeps going until none remains. Prototype tickets now present their variations and ask the user to choose; task tickets are dispatched to subagents; grilling stays autonomous.
+
 ## 1.8.1
 
 ### Patch Changes
