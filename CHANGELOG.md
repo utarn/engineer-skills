@@ -1,5 +1,15 @@
 # utarn-skills
 
+## 1.8.4
+
+### Patch Changes
+
+- Remove the post-implementation audit phase from `work-on-issues`.
+
+  - Phase 2.5 is gone: there is no separate auditor subagent, no `fix: audit` follow-up commits, and no clean-verdict merge gate. Verification stays inside the implementer's post-implementation step — tests, `/find-mismatch` on modified files, and `fallow audit` for JS/TS — and the orchestrator now posts those results on the PR/MR instead of an audit verdict.
+  - The `resolved` label now means "implementation committed; PR pending" rather than "audit in flight".
+  - Docs, the top-level README, the engineering bucket README, and `ask-utarn` are re-synced to describe the implement → verify → close loop.
+
 ## 1.8.3
 
 ### Patch Changes
